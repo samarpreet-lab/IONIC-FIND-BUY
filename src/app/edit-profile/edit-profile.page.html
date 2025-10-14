@@ -1,0 +1,115 @@
+<ion-header [translucent]="true" class="edit-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab5" text="" icon="chevron-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-badge class="role-pill">Customer</ion-badge>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="edit-page">
+  <div class="edit-scroll">
+    <section class="card identity-card">
+      <div class="avatar-wrapper">
+        <img [src]="avatarUrl" alt="Profile" />
+      </div>
+      <div class="identity-copy">
+        <h2>{{ profileSummary.name }}</h2>
+        <p>{{ profileSummary.joined }}</p>
+        <small>This info is private and visible only to you.</small>
+      </div>
+      <ion-button fill="outline" shape="round" class="change-avatar" (click)="onAvatarChange()">
+        <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
+        Change
+      </ion-button>
+    </section>
+
+    <section class="card section-card">
+      <div class="section-heading">
+        <h2>Personal information</h2>
+      </div>
+      <div class="form-grid">
+        <div class="field-group">
+          <label class="field-label" for="fullName">Full name</label>
+          <div class="field-control">
+            <ion-input
+              id="fullName"
+              type="text"
+              [(ngModel)]="formState.fullName"
+              placeholder="Enter your full name"
+            ></ion-input>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="username">Username</label>
+          <div class="field-control">
+            <ion-input
+              id="username"
+              type="text"
+              [(ngModel)]="formState.username"
+              placeholder="@username"
+            ></ion-input>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="bio">Bio</label>
+          <div class="field-control">
+            <ion-textarea
+              id="bio"
+              auto-grow="true"
+              rows="3"
+              [(ngModel)]="formState.bio"
+              placeholder="Share something short about yourself"
+            ></ion-textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section-card">
+      <div class="section-heading">
+        <h2>Contact</h2>
+      </div>
+      <ion-list lines="none">
+        <ion-item class="info-item" *ngFor="let field of contactFields">
+          <div class="info-copy">
+            <h3>{{ field.label }}</h3>
+            <p>{{ field.value }}</p>
+          </div>
+          <ion-button fill="outline" size="small" shape="round" (click)="onFieldAction(field)">
+            {{ field.actionLabel }}
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </section>
+
+    <section class="card section-card">
+      <div class="section-heading">
+        <h2>Preferences</h2>
+      </div>
+      <ion-list lines="none">
+        <ion-item class="info-item" *ngFor="let pref of preferenceFields">
+          <div class="info-copy">
+            <h3>{{ pref.label }}</h3>
+            <p>{{ pref.subtitle }}</p>
+          </div>
+          <ion-button fill="outline" size="small" shape="round" (click)="onFieldAction(pref)">
+            {{ pref.actionLabel }}
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </section>
+
+    <div class="action-bar">
+      <ion-button fill="outline" class="secondary-action" (click)="onCancel()">
+        Cancel
+      </ion-button>
+      <ion-button class="primary-action" expand="block" (click)="onSave()">
+        Save changes
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

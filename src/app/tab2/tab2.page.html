@@ -1,0 +1,128 @@
+<ion-content class="discover-page">
+  <!-- Header -->
+  <div class="discover-header">
+    <h1>Discover</h1>
+    <ion-button fill="clear" size="small" class="filter-button">
+      <ion-icon slot="start" name="options-outline"></ion-icon>
+      Filters
+    </ion-button>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <ion-searchbar 
+      placeholder="Search products across all shops"
+      show-clear-button="focus">
+    </ion-searchbar>
+  </div>
+
+  <!-- Quick Filters -->
+  <div class="quick-filters">
+    <div class="filter-chips">
+      <ion-chip class="filter-chip active">
+        All Products
+      </ion-chip>
+      <ion-chip class="filter-chip">
+        <ion-icon name="location-outline"></ion-icon>
+        Nearby
+      </ion-chip>
+      <ion-chip class="filter-chip">
+        In Stock
+      </ion-chip>
+      <ion-chip class="filter-chip">
+        Electronics
+      </ion-chip>
+    </div>
+  </div>
+
+  <!-- Search Results -->
+  <div class="search-results">
+    <div class="results-header">
+      <h2>Search Results</h2>
+      <span class="results-count">{{ products.length }} products found</span>
+    </div>
+
+    <!-- Product List using *ngFor -->
+    <div class="product-list">
+      <ion-card 
+        class="product-item" 
+        *ngFor="let product of products;">
+        
+        <div class="product-content">
+          <!-- Dynamic product image and alt text -->
+          <img 
+            [src]="product.image" 
+            [alt]="product.name" 
+            class="product-thumbnail" alt="Product Image">
+          
+          <div class="product-details">
+            <!-- Dynamic product name -->
+            <h3>{{ product.name }}</h3>
+            
+            <!-- Dynamic product description -->
+            <p class="product-description">{{ product.description }}</p>
+            
+            <!-- Dynamic product meta information -->
+            <div class="product-meta">
+              <span class="price">₹{{ product.price | number }}</span>
+              <span class="shop">{{ product.shopName }}</span>
+              <span class="distance">{{ product.distance }}</span>
+            </div>
+            
+            <!-- Dynamic status badge using *ngIf and function -->
+            <ion-badge 
+              [color]="getStatusColor(product.isAvailable)" 
+              class="status-badge">
+              {{ getStatusText(product.isAvailable) }}
+            </ion-badge>
+
+            <!-- Product tags using *ngFor -->
+            <div class="product-tags" *ngIf="product.tags && product.tags.length > 0">
+              <ion-chip 
+                *ngFor="let tag of product.tags" 
+                size="small" 
+                [color]="'medium'">
+                {{ tag }}
+              </ion-chip>
+            </div>
+          </div>
+          
+          <!-- Dynamic product actions -->
+          <div class="product-actions">
+            <!-- Favorite button with conditional icon using *ngIf -->
+            <ion-button 
+              fill="clear" 
+              size="small" 
+              (click)="toggleFavorite(product.id, $event)">
+              <ion-icon 
+                *ngIf="!product.isFavorite" 
+                name="heart-outline" 
+                color="medium">
+              </ion-icon>
+              <ion-icon 
+                *ngIf="product.isFavorite" 
+                name="heart" 
+                color="danger">
+              </ion-icon>
+            </ion-button>
+            
+          </div>
+        </div>
+      </ion-card>
+
+      <!-- Show message when no products available using *ngIf -->
+      <div *ngIf="products.length === 0" class="no-products-message">
+        <ion-icon name="search-outline" size="large"></ion-icon>
+        <h3>No products found</h3>
+        <p>Try adjusting your search or filters</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Action Button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

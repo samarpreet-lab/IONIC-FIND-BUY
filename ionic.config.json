@@ -1,0 +1,7 @@
+{
+  "name": "FINDBUY-CUSTOMER-IONIC",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

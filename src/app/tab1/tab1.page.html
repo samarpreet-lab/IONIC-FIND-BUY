@@ -1,0 +1,139 @@
+<ion-content class="home-page">
+  <!-- Header -->
+  <div class="home-header">
+    <h1>Home</h1>
+    <ion-button fill="clear" size="small" class="signup-button" routerLink="/signup" routerDirection="forward">
+      Sign Up
+    </ion-button>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <ion-searchbar placeholder="Search shops, products, places" show-clear-button="focus">
+    </ion-searchbar>
+  </div>
+
+  <!-- Feature Cards using *ngFor -->
+  <div class="feature-cards">
+    <ion-card class="feature-card" *ngFor="let card of featureCards" [ngClass]="card.type">
+  <div class="feature-content">
+        <img [src]="card.image" [alt]="card.alt" class="feature-image" alt="Feature Image">
+        <div class="feature-info">
+          <h3>{{ card.title }}</h3>
+          <p class="feature-details">{{ card.details }}</p>
+
+          <!-- Status badge using ngSwitch -->
+          <div class="status-badge" [ngSwitch]="card.type">
+            <ion-badge *ngSwitchCase="'market'" color="success">Fresh Market</ion-badge>
+            <ion-badge *ngSwitchCase="'bakery'" color="warning">Hot & Fresh</ion-badge>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+
+  <!-- Quick Access -->
+  <div class="quick-access">
+    <h2>Quick access</h2>
+    <div class="quick-icons">
+      <div class="quick-item" routerLink="/mobile-phones">
+        <div class="quick-icon produce">
+          <ion-icon name="phone-portrait-outline"></ion-icon>
+        </div>
+        <span>Mobile & Phones</span>
+      </div>
+      <div class="quick-item" routerLink="/electronics">
+        <div class="quick-icon cafes">
+          <ion-icon name="tv-outline"></ion-icon>
+        </div>
+        <span>Electronics</span>
+      </div>
+      <div class="quick-item" routerLink="/beauty-health">
+        <div class="quick-icon butchers">
+          <ion-icon name="heart-outline"></ion-icon>
+        </div>
+        <span>Beauty & Health</span>
+      </div>
+      <div class="quick-item" routerLink="/fashion">
+        <div class="quick-icon dairy">
+          <ion-icon name="shirt-outline"></ion-icon>
+        </div>
+        <span>Fashion</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nearby Shops using *ngFor -->
+  <div class="nearby-shops">
+    <h2>Nearby shops</h2>
+
+    <!-- Loop through nearbyShops array using *ngFor -->
+    <ion-card class="shop-card" *ngFor="let shop of nearbyShops; let i = index">
+      <div class="shop-content">
+        <img [src]="shop.image" [alt]="shop.name" [title]="shop.name" class="shop-image" alt="Shop Image">
+        <div class="shop-info">
+          <div class="shop-header">
+            <h3>{{ shop.name }}</h3>
+            <!-- Shop status for both open and closed shops -->
+            <ion-badge [color]="getStatusColor(shop.isOpen)" class="status-badge">
+              {{ getShopStatus(shop.isOpen) }}
+            </ion-badge>
+          </div>
+
+          <p class="shop-type">{{ shop.type }} • {{ shop.distance }}</p>
+
+          <!-- Rating display using *ngIf -->
+          <div *ngIf="shop.rating" class="shop-rating">
+            <ion-icon name="star" color="warning"></ion-icon>
+            <span>{{ shop.rating }}</span>
+          </div>
+
+          <!-- Tags using *ngFor -->
+          <div class="shop-tags">
+            <span class="tag" *ngFor="let tag of shop.tags">{{ tag }}</span>
+          </div>
+
+          <!-- Category-specific info using ngSwitch -->
+          <div class="category-info" [ngSwitch]="shop.category">
+            <p *ngSwitchCase="'grocery'" class="category-text">
+              <ion-icon name="basket-outline"></ion-icon>
+              Daily essentials available
+            </p>
+            <p *ngSwitchCase="'sweets'" class="category-text">
+              <ion-icon name="ice-cream-outline"></ion-icon>
+              Fresh sweets & snacks
+            </p>
+            <p *ngSwitchCase="'meat'" class="category-text">
+              <ion-icon name="fish-outline"></ion-icon>
+              Fresh cut meat
+            </p>
+            <p *ngSwitchCase="'dairy'" class="category-text">
+              <ion-icon name="water-outline"></ion-icon>
+              Farm fresh dairy
+            </p>
+            <p *ngSwitchDefault class="category-text">
+              <ion-icon name="storefront-outline"></ion-icon>
+              Quality products
+            </p>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+
+    <!-- Show message if no shops are available using *ngIf -->
+    <div *ngIf="nearbyShops.length === 0" class="no-shops-message">
+      <ion-icon name="location-outline"></ion-icon>
+      <p>No nearby shops found</p>
+    </div>
+  </div>
+
+  <!-- Map Section -->
+  <div class="map-section">
+    <div class="map-header">
+      <h2>On the map</h2>
+      <ion-button fill="clear" size="small" class="open-map-btn">
+        Open map
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

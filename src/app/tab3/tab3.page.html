@@ -1,0 +1,260 @@
+<ion-content [fullscreen]="true" class="categories-page">
+  
+
+  <!-- Categories Header -->
+  <div class="categories-header">
+    <h1>Categories</h1>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <ion-searchbar 
+      placeholder="Search categories..." 
+      show-clear-button="focus"
+      (ionInput)="onSearchCategories($event)">
+    </ion-searchbar>
+  </div>
+
+  <!-- Popular Categories Section -->
+  <div class="section-header">
+    <h2>Popular Categories</h2>
+    <p>Most searched categories</p>
+  </div>
+
+  <div class="popular-categories">
+    <ion-row>
+      <ion-col size="6" size-md="4" size-lg="3" *ngFor="let category of popularCategories">
+        <ion-card class="popular-category-card" (click)="navigateToCategory(category.id)">
+          <ion-card-content>
+            <div class="category-icon-container">
+              <ion-icon [name]="category.icon" class="category-icon"></ion-icon>
+            </div>
+            <h3>{{category.name}}</h3>
+            <p>{{category.itemCount}} items</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <!-- All Categories Section -->
+  <div class="section-header" *ngIf="!isSearching">
+    <h2>All Categories</h2>
+    <p>Browse by category</p>
+  </div>
+
+  <!-- No Results Message -->
+  <div class="no-results" *ngIf="isSearching && !hasSearchResults()">
+    <ion-icon name="search-outline" size="large"></ion-icon>
+    <h3>No categories found</h3>
+    <p>Try a different search term or <ion-button fill="clear" (click)="clearSearch()">clear search</ion-button></p>
+  </div>
+
+  <!-- Category Groups -->
+  <div class="category-groups">
+    
+    <!-- Electronics & Gadgets -->
+    <ion-card class="category-group" *ngIf="getFilteredElectronicsCategories().length > 0">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="phone-portrait-outline" class="group-icon"></ion-icon>
+          Electronics & Gadgets
+          <span *ngIf="isSearching">({{getFilteredElectronicsCategories().length}} found)</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="category-grid">
+          <div class="category-item" *ngFor="let item of getFilteredElectronicsCategories()" (click)="navigateToCategory(item.id)">
+            <ion-icon [name]="item.icon" class="item-icon"></ion-icon>
+            <span class="item-name">{{item.name}}</span>
+            <ion-badge color="light" class="item-count">{{item.count}}</ion-badge>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Fashion & Lifestyle -->
+    <ion-card class="category-group" *ngIf="getFilteredFashionCategories().length > 0">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="shirt-outline" class="group-icon"></ion-icon>
+          Fashion & Lifestyle
+          <span *ngIf="isSearching">({{getFilteredFashionCategories().length}} found)</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="category-grid">
+          <div class="category-item" *ngFor="let item of getFilteredFashionCategories()" (click)="navigateToCategory(item.id)">
+            <ion-icon [name]="item.icon" class="item-icon"></ion-icon>
+            <span class="item-name">{{item.name}}</span>
+            <ion-badge color="light" class="item-count">{{item.count}}</ion-badge>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Food & Beverages -->
+    <ion-card class="category-group" *ngIf="getFilteredFoodCategories().length > 0">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="restaurant-outline" class="group-icon"></ion-icon>
+          Food & Beverages
+          <span *ngIf="isSearching">({{getFilteredFoodCategories().length}} found)</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="category-grid">
+          <div class="category-item" *ngFor="let item of getFilteredFoodCategories()" (click)="navigateToCategory(item.id)">
+            <ion-icon [name]="item.icon" class="item-icon"></ion-icon>
+            <span class="item-name">{{item.name}}</span>
+            <ion-badge color="light" class="item-count">{{item.count}}</ion-badge>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Home & Living -->
+    <ion-card class="category-group" *ngIf="getFilteredHomeCategories().length > 0">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="home-outline" class="group-icon"></ion-icon>
+          Home & Living
+          <span *ngIf="isSearching">({{getFilteredHomeCategories().length}} found)</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="category-grid">
+          <div class="category-item" *ngFor="let item of getFilteredHomeCategories()" (click)="navigateToCategory(item.id)">
+            <ion-icon [name]="item.icon" class="item-icon"></ion-icon>
+            <span class="item-name">{{item.name}}</span>
+            <ion-badge color="light" class="item-count">{{item.count}}</ion-badge>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Health & Beauty -->
+    <ion-card class="category-group" *ngIf="getFilteredHealthCategories().length > 0">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="heart-outline" class="group-icon"></ion-icon>
+          Health & Beauty
+          <span *ngIf="isSearching">({{getFilteredHealthCategories().length}} found)</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="category-grid">
+          <div class="category-item" *ngFor="let item of getFilteredHealthCategories()" (click)="navigateToCategory(item.id)">
+            <ion-icon [name]="item.icon" class="item-icon"></ion-icon>
+            <span class="item-name">{{item.name}}</span>
+            <ion-badge color="light" class="item-count">{{item.count}}</ion-badge>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Sports & Fitness -->
+    <ion-card class="category-group" *ngIf="getFilteredSportsCategories().length > 0">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="fitness-outline" class="group-icon"></ion-icon>
+          Sports & Fitness
+          <span *ngIf="isSearching">({{getFilteredSportsCategories().length}} found)</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="category-grid">
+          <div class="category-item" *ngFor="let item of getFilteredSportsCategories()" (click)="navigateToCategory(item.id)">
+            <ion-icon [name]="item.icon" class="item-icon"></ion-icon>
+            <span class="item-name">{{item.name}}</span>
+            <ion-badge color="light" class="item-count">{{item.count}}</ion-badge>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Books & Education -->
+    <ion-card class="category-group" *ngIf="getFilteredBooksCategories().length > 0">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="book-outline" class="group-icon"></ion-icon>
+          Books & Education
+          <span *ngIf="isSearching">({{getFilteredBooksCategories().length}} found)</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="category-grid">
+          <div class="category-item" *ngFor="let item of getFilteredBooksCategories()" (click)="navigateToCategory(item.id)">
+            <ion-icon [name]="item.icon" class="item-icon"></ion-icon>
+            <span class="item-name">{{item.name}}</span>
+            <ion-badge color="light" class="item-count">{{item.count}}</ion-badge>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Automotive -->
+    <ion-card class="category-group" *ngIf="getFilteredAutomotiveCategories().length > 0">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="car-outline" class="group-icon"></ion-icon>
+          Automotive
+          <span *ngIf="isSearching">({{getFilteredAutomotiveCategories().length}} found)</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="category-grid">
+          <div class="category-item" *ngFor="let item of getFilteredAutomotiveCategories()" (click)="navigateToCategory(item.id)">
+            <ion-icon [name]="item.icon" class="item-icon"></ion-icon>
+            <span class="item-name">{{item.name}}</span>
+            <ion-badge color="light" class="item-count">{{item.count}}</ion-badge>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Baby & Kids -->
+    <ion-card class="category-group" *ngIf="getFilteredBabyCategories().length > 0">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="happy-outline" class="group-icon"></ion-icon>
+          Baby & Kids
+          <span *ngIf="isSearching">({{getFilteredBabyCategories().length}} found)</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="category-grid">
+          <div class="category-item" *ngFor="let item of getFilteredBabyCategories()" (click)="navigateToCategory(item.id)">
+            <ion-icon [name]="item.icon" class="item-icon"></ion-icon>
+            <span class="item-name">{{item.name}}</span>
+            <ion-badge color="light" class="item-count">{{item.count}}</ion-badge>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Groceries & Daily Needs -->
+    <ion-card class="category-group" *ngIf="getFilteredGroceryCategories().length > 0">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="basket-outline" class="group-icon"></ion-icon>
+          Groceries & Daily Needs
+          <span *ngIf="isSearching">({{getFilteredGroceryCategories().length}} found)</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="category-grid">
+          <div class="category-item" *ngFor="let item of getFilteredGroceryCategories()" (click)="navigateToCategory(item.id)">
+            <ion-icon [name]="item.icon" class="item-icon"></ion-icon>
+            <span class="item-name">{{item.name}}</span>
+            <ion-badge color="light" class="item-count">{{item.count}}</ion-badge>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+  
+
+</ion-content>

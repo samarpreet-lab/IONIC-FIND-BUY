@@ -1,0 +1,259 @@
+
+.profile-page {
+	--background: transparent;
+	background: var(--app-background-gradient);
+	color: #1f1f1f;
+	font-family: 'Poppins', 'Inter', sans-serif;
+}
+.title-block {
+	padding: 1.5rem 1rem 1rem;
+		h1 {
+			margin: 0;
+			font-size: 1.8rem;
+			font-weight: 700;
+			color: #1f1f1f;
+			line-height: 1.2;
+		}
+	}
+
+.profile-header ion-toolbar {
+	--background: #ffffff;
+	--color: #1f1f1f;
+	--border-width: 0 0 1px 0;
+	--border-color: rgba(0, 0, 0, 0.05);
+	font-weight: 700;
+}
+
+
+.profile-scroll {
+	padding: 1.5rem 1rem 2.2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.75rem;
+}
+
+
+.profile-card {
+	background: #ffffff;
+	border-radius: 26px;
+	box-shadow: 0 18px 40px rgba(41, 10, 112, 0.08);
+	padding: 1.4rem 1.35rem 1.65rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+.profile-top {
+	display: flex;
+	align-items: center;
+	gap: 1.25rem;
+}
+
+.profile-avatar {
+	--border-radius: 22px;
+	width: 76px;
+	height: 76px;
+	background: linear-gradient(135deg, #290a70, #5a35b5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.8rem;
+	font-weight: 700;
+	color: #ffffff;
+	text-transform: uppercase;
+}
+
+.profile-avatar span {
+	letter-spacing: 0.03em;
+}
+
+.profile-info {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 0.45rem;
+}
+
+.name-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.name-row h1 {
+	margin: 0;
+	font-size: 1.65rem;
+	font-weight: 700;
+	color: #1f1f1f;
+}
+
+.role-badge {
+	--background: rgba(41, 10, 112, 0.12);
+	--color: #290a70;
+	padding: 0.4rem 0.65rem;
+	border-radius: 999px;
+	font-weight: 600;
+	text-transform: none;
+}
+
+.profile-info p {
+	margin: 0;
+	color: #8e9096;
+	font-size: 0.95rem;
+	font-weight: 500;
+}
+
+.profile-info .dot {
+	margin: 0 0.35rem;
+}
+
+.profile-search {
+	--background: #f2f2f4;
+.section-card {
+	background: #ffffff;
+	border-radius: 24px;
+	box-shadow: 0 18px 40px rgba(41, 10, 112, 0.08);
+	padding: 1.1rem 0.85rem 0.7rem;
+}
+.section-heading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 0.65rem;
+}
+
+.section-card ion-list {
+	padding: 0.15rem 0;
+}
+
+.action-item {
+	--inner-padding-end: 0.55rem;
+	--inner-padding-start: 0.55rem;
+	--padding-top: 0.85rem;
+	--padding-bottom: 0.85rem;
+	--min-height: 68px;
+	margin: 0 0 0.55rem;
+	border-radius: 20px;
+	background: #f9f9fb;
+	box-shadow: none;
+}
+.action-item:last-child {
+	margin-bottom: 0.25rem;
+}
+	font-weight: 700;
+}
+
+ion-list {
+	background: transparent;
+}
+
+.action-item {
+	--inner-padding-end: 0.75rem;
+	--inner-padding-start: 1rem;
+	--min-height: 68px;
+	margin: 0 0.75rem 0.75rem;
+	border-radius: 20px;
+	background: #f9f9fb;
+	box-shadow: none;
+}
+
+.action-item:last-child {
+	margin-bottom: 0.5rem;
+}
+
+.item-icon {
+	width: 46px;
+	height: 46px;
+	border-radius: 16px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 0.65rem;
+	background: linear-gradient(135deg, rgba(41, 10, 112, 0.12), rgba(90, 53, 181, 0.12));
+	color: #290a70;
+	transition: transform 0.25s ease;
+}
+
+.item-icon.secondary {
+	background: linear-gradient(135deg, rgba(245, 165, 36, 0.16), rgba(255, 201, 120, 0.16));
+	color: #c47906;
+}
+
+.item-icon.tertiary {
+	background: linear-gradient(135deg, rgba(41, 10, 112, 0.12), rgba(90, 53, 181, 0.12));
+	color: #290a70;
+}
+
+.item-icon.primary {
+	background: linear-gradient(135deg, rgba(41, 10, 112, 0.18), rgba(90, 53, 181, 0.22));
+	color: #290a70;
+}
+
+.action-item ion-label h3 {
+	margin: 0;
+	font-size: 1.05rem;
+	font-weight: 700;
+}
+
+.action-item ion-label p {
+	margin: 0.25rem 0 0;
+	color: #8e9096;
+	font-size: 0.9rem;
+	font-weight: 500;
+}
+
+.action-item .chevron {
+	color: #c2c3d4;
+}
+
+.action-item:active .item-icon,
+.action-item.ion-activated .item-icon {
+	transform: scale(0.95);
+}
+
+.bottom-actions {
+	display: flex;
+	flex-direction: column;
+	gap: 0.9rem;
+}
+
+.bottom-actions ion-button {
+	--border-radius: 18px;
+	--padding-top: 1.05rem;
+	--padding-bottom: 1.05rem;
+	font-weight: 600;
+	text-transform: none;
+}
+
+.bottom-actions .sign-out {
+	--background: linear-gradient(135deg, #ff4d6d, #ff7b92);
+	--color: #ffffff;
+	--ripple-color: rgba(255, 77, 109, 0.2);
+	box-shadow: 0 14px 28px rgba(255, 77, 109, 0.32);
+}
+
+@media (max-width: 480px) {
+	.profile-scroll {
+		padding: 1.25rem 1rem 2.25rem;
+		gap: 1.5rem;
+	}
+
+	.profile-card {
+		padding: 1.35rem 1.25rem 1.5rem;
+	}
+
+	.profile-avatar {
+		width: 68px;
+		height: 68px;
+		font-size: 1.6rem;
+	}
+
+	.name-row h1 {
+		font-size: 1.5rem;
+	}
+
+	.action-item {
+		margin: 0 0.65rem 0.65rem;
+	}
+}

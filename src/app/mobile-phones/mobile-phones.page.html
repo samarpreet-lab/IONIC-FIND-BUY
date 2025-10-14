@@ -1,0 +1,109 @@
+<ion-content class="category-page">
+  <!-- Header -->
+  <div class="category-header">
+    <ion-button fill="clear" size="small" class="back-button" routerLink="/tabs/tab3">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <div class="header-info">
+      <div class="category-icon">
+        <ion-icon [name]="categoryInfo.icon"></ion-icon>
+      </div>
+      <div class="category-details">
+        <h1>{{ categoryInfo.name }}</h1>
+        <p>{{ categoryInfo.itemCount }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <ion-searchbar 
+      placeholder="Search mobiles, accessories..."
+      show-clear-button="focus">
+    </ion-searchbar>
+  </div>
+
+  <!-- Filter Tabs -->
+  <div class="filter-tabs">
+    <ion-button 
+      *ngFor="let filter of filterOptions"
+      size="small"
+      class="filter-tab">
+      {{ filter.name }}
+    </ion-button>
+  </div>
+
+  <!-- Featured Products -->
+  <div class="section featured-section">
+    <h2>Featured Products</h2>
+    <div class="products-grid">
+      <ion-card class="product-card" *ngFor="let product of featuredProducts">
+        <div class="product-image-container">
+          <img [src]="product.image" [alt]="product.name" class="product-image">
+          <div class="discount-badge" *ngIf="product.discount">
+            {{ product.discount }}
+          </div>
+        </div>
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          <p class="shop-name">{{ product.shop }}</p>
+          <div class="price-section">
+            <span class="current-price">{{ product.price }}</span>
+            <span class="original-price" *ngIf="product.originalPrice">{{ product.originalPrice }}</span>
+          </div>
+          <div class="product-meta">
+            <div class="rating">
+              <ion-icon name="star" color="warning"></ion-icon>
+              <span>{{ product.rating }}</span>
+            </div>
+            <span class="distance">{{ product.distance }}</span>
+            <ion-badge [color]="product.inStock ? 'success' : 'danger'" class="stock-badge">
+              {{ product.inStock ? 'In Stock' : 'Out of Stock' }}
+            </ion-badge>
+          </div>
+        </div>
+      </ion-card>
+    </div>
+  </div>
+
+  <!-- Nearby Shops -->
+  <div class="section nearby-section">
+    <h2>Nearby {{ categoryInfo.name }} Shops</h2>
+    
+    <ion-card class="shop-card" *ngFor="let shop of nearbyShops">
+      <div class="shop-content">
+        <img [src]="shop.image" [alt]="shop.name" class="shop-image">
+        <div class="shop-info">
+          <div class="shop-header">
+            <h3>{{ shop.name }}</h3>
+            <ion-badge 
+              [color]="getStatusColor(shop.isOpen)"
+              class="status-badge">
+              {{ getShopStatus(shop.isOpen) }}
+            </ion-badge>
+          </div>
+          
+          <p class="shop-type">{{ shop.type }} • {{ shop.distance }}</p>
+          
+          <div class="shop-rating">
+            <ion-icon name="star" color="warning"></ion-icon>
+            <span>{{ shop.rating }}</span>
+          </div>
+          
+          <div class="shop-tags">
+            <ion-chip *ngFor="let tag of shop.tags" class="tag-chip">
+              {{ tag }}
+            </ion-chip>
+          </div>
+
+          <div class="shop-offers" *ngIf="shop.offers && shop.offers.length > 0">
+            <div class="offer-item" *ngFor="let offer of shop.offers">
+              <ion-icon name="gift-outline"></ion-icon>
+              <span>{{ offer }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

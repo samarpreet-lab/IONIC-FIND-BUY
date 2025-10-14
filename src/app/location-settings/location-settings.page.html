@@ -1,0 +1,103 @@
+<ion-header [translucent]="true" class="location-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab5" text="" icon="chevron-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Location Settings</ion-title>
+    <ion-buttons slot="end">
+      <ion-badge class="role-pill">Customer</ion-badge>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="location-page">
+  <div class="page-scroll">
+    <section class="map-card">
+      <div class="card-top">
+        <div>
+          <h2>Discovery radius</h2>
+          <p>Adjust how far we search for nearby Punjabi shops.</p>
+        </div>
+  <span class="radius-value">5 km</span>
+      </div>
+
+      <div class="map-illustration" aria-hidden="true">
+        <div class="map-pin pin-primary"></div>
+        <div class="map-pin pin-secondary"></div>
+        <div class="map-pin pin-tertiary"></div>
+      </div>
+
+      <ion-range
+        class="radius-range"
+        min="1"
+        max="25"
+        [snaps]="true"
+        [ticks]="true"
+        [step]="1"
+        value="5"
+        disabled
+      >
+        <ion-icon slot="start" name="locate-outline"></ion-icon>
+        <ion-icon slot="end" name="navigate-circle-outline"></ion-icon>
+      </ion-range>
+
+      <div class="range-labels">
+        <span>1 km</span>
+        <span>10 km</span>
+        <span>25 km</span>
+      </div>
+
+    </section>
+
+    <section class="settings-section">
+      <div class="section-header">
+        <h2>Permissions</h2>
+      </div>
+      <ion-list lines="none">
+        <ion-item class="setting-item" *ngFor="let toggle of permissionToggles">
+          <div class="item-copy">
+            <h3>{{ toggle.label }}</h3>
+            <p>{{ toggle.description }}</p>
+          </div>
+          <ion-toggle
+            slot="end"
+            mode="md"
+            [(ngModel)]="settingsState[toggle.key]"
+          ></ion-toggle>
+        </ion-item>
+      </ion-list>
+      <p class="helper-text">
+        You can change system location permissions later in your device settings.
+      </p>
+    </section>
+
+    <section class="settings-section">
+      <div class="section-header">
+        <h2>Discovery preferences</h2>
+      </div>
+      <ion-list lines="none">
+        <ion-item class="setting-item" *ngFor="let toggle of preferenceToggles">
+          <div class="item-copy">
+            <h3>{{ toggle.label }}</h3>
+            <p>{{ toggle.description }}</p>
+          </div>
+          <ion-toggle
+            slot="end"
+            mode="md"
+            [(ngModel)]="settingsState[toggle.key]"
+          ></ion-toggle>
+        </ion-item>
+      </ion-list>
+    </section>
+
+    <div class="action-bar">
+      <ion-button fill="outline" class="map-button">
+        <ion-icon slot="start" name="map-outline"></ion-icon>
+        View on map
+      </ion-button>
+      <ion-button class="save-button" expand="block">
+        Save changes
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,53 @@
+<ion-content class="signup-page">
+  <section class="hero">
+    <ion-img
+      class="hero-logo"
+      src="assets/logo.png"
+      alt="Find &amp; Buy"
+    ></ion-img>
+  </section>
+
+  <div class="signup-container">
+    <ion-card class="signup-card">
+      <ion-card-header>
+        <ion-card-title>Sign up</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item class="input-item">
+            <ion-input placeholder="Full Name" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item class="input-item">
+            <ion-input placeholder="Enter Email ID/ Phone No." type="text"></ion-input>
+          </ion-item>
+
+          <ion-item class="input-item">
+            <ion-input placeholder="Password" type="password"></ion-input>
+          </ion-item>
+
+          <ion-item class="input-item">
+            <ion-input placeholder="Repeat the Password" type="password"></ion-input>
+          </ion-item>
+
+          <ion-item class="terms-item">
+            <ion-checkbox slot="start"></ion-checkbox>
+            <ion-label>I Agree with Terms of Service and Privacy Policy</ion-label>
+          </ion-item>
+        </ion-list>
+
+        <ion-button expand="block" class="signup-button" routerLink="/tabs/tab1" routerDirection="root">
+          Sign up
+        </ion-button>
+
+        <p class="login-text">
+            <span class="login-label">Already have an account?</span>
+            <ion-button fill="clear" class="login-link" routerLink="/login" routerDirection="forward" size="small">
+             Log in
+           </ion-button>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

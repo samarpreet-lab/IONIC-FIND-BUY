@@ -1,0 +1,125 @@
+<ion-header [translucent]="true" class="support-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab5" text="" icon="chevron-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Contact Support</ion-title>
+    <ion-buttons slot="end">
+      <ion-badge class="role-pill">Customer</ion-badge>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="support-page">
+  <div class="support-scroll">
+    <section class="card intro-card">
+      <div class="intro-icon">
+        <ion-icon name="headset-outline"></ion-icon>
+      </div>
+      <div class="intro-copy">
+        <h2>{{ supportSummary.title }}</h2>
+        <p>{{ supportSummary.message }}</p>
+      </div>
+    </section>
+
+    <section class="card details-card">
+      <div class="section-heading">
+        <h2>Your details</h2>
+      </div>
+      <ion-list lines="none">
+        <ion-item class="detail-item">
+          <div class="detail-copy">
+            <h3>Email</h3>
+            <p>{{ userDetails.email }}</p>
+          </div>
+          <ion-button fill="outline" size="small" shape="round">Change</ion-button>
+        </ion-item>
+        <ion-item class="detail-item">
+          <div class="detail-copy">
+            <h3>Name</h3>
+            <p>{{ userDetails.name }}</p>
+          </div>
+          <ion-button fill="outline" size="small" shape="round">Edit</ion-button>
+        </ion-item>
+      </ion-list>
+    </section>
+
+    <section class="card form-card">
+      <div class="section-heading">
+        <h2>What do you need help with?</h2>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="topicSelect">Choose a topic</label>
+        <div class="topic-select">
+          <ion-icon name="pricetag-outline"></ion-icon>
+          <ion-select
+            id="topicSelect"
+            interface="popover"
+            placeholder="Choose a topic"
+            [(ngModel)]="selectedTopic"
+          >
+            <ion-select-option *ngFor="let topic of topicOptions" [value]="topic.value">
+              {{ topic.label }}
+            </ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="issueTextarea">Describe your issue or question...</label>
+        <ion-textarea
+          id="issueTextarea"
+          auto-grow="true"
+          rows="4"
+          placeholder="Include details that help us respond faster"
+          [(ngModel)]="issueDescription"
+        ></ion-textarea>
+      </div>
+      <p class="helper-text">{{ attachmentsNote }}</p>
+    </section>
+
+    <section class="card attachments-card">
+      <div class="attachments-row">
+        <div class="attachment-icon">
+          <ion-icon name="image-outline"></ion-icon>
+        </div>
+        <div class="attachment-copy">
+          <h3>Add screenshots (optional)</h3>
+          <p>Upload images to show the issue</p>
+        </div>
+        <ion-button fill="outline" shape="round" size="small">
+          <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
+          Upload
+        </ion-button>
+      </div>
+    </section>
+
+    <section class="card methods-card">
+      <div class="section-heading">
+        <h2>How should we contact you?</h2>
+      </div>
+      <div class="method-list">
+        <button
+          type="button"
+          class="method-chip"
+          *ngFor="let method of contactMethods"
+          [class.active]="selectedMethod === method.key"
+          (click)="onMethodSelect(method.key)"
+        >
+          <strong>{{ method.label }}</strong>
+          <span>{{ method.description }}</span>
+          <ion-badge *ngIf="selectedMethod === method.key" color="success">Selected</ion-badge>
+        </button>
+      </div>
+    </section>
+
+    <div class="action-bar">
+      <ion-button fill="outline" class="secondary-action">
+        <ion-icon slot="start" name="mail-open-outline"></ion-icon>
+        Email us directly
+      </ion-button>
+      <ion-button class="primary-action" expand="block" (click)="onSubmit()">
+        Send message
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,152 @@
+<ion-content [fullscreen]="true" class="favorites-page">
+  <div class="page-header">
+    <div class="title-block">
+      <h1>Favorites</h1>
+      <p>Quickly return to the things you love .</p>
+    </div>
+    <ion-button fill="clear" class="manage-button" size="small">
+      <ion-icon name="create-outline" slot="start"></ion-icon>
+      Manage
+    </ion-button>
+  </div>
+
+  <div class="search-section">
+    <ion-searchbar
+      placeholder="Search favorites in Punjab"
+      (ionInput)="onSearchFavorites($event)"
+      show-clear-button="focus"
+    ></ion-searchbar>
+  </div>
+
+  <div class="segment-wrapper">
+    <ion-segment [value]="segmentValue" (ionChange)="onSegmentChange($event)">
+      <ion-segment-button value="products">
+        <ion-label>Products</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="shops">
+        <ion-label>Shops</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div class="segment-content" *ngIf="segmentValue === 'products'">
+    <section class="favorites-section" *ngIf="hasProductResults; else noProductFavorites">
+      <h2>Saved products</h2>
+      <div class="favorites-list">
+        <ion-card class="favorite-card" *ngFor="let product of getFilteredProducts()">
+          <div class="card-media">
+            <img
+              [src]="product.image"
+              alt="{{ product.name }}"
+              title="{{ product.name }} at {{ product.shop }} · {{ product.location }}"
+              loading="lazy"
+            />
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>{{ product.name }}</h3>
+              <ion-button fill="clear" class="favorite-button" (click)="toggleSave(product)">
+                <ion-icon [name]="product.saved ? 'heart' : 'heart-outline'"></ion-icon>
+              </ion-button>
+            </div>
+            <p class="meta">{{ product.shop }} • {{ product.location }} • {{ product.distance }}</p>
+            <div class="tag-row">
+              <ion-chip color="light" *ngFor="let tag of product.tags">{{ tag }}</ion-chip>
+            </div>
+          </div>
+        </ion-card>
+      </div>
+    </section>
+
+    <ng-template #noProductFavorites>
+      <div class="empty-state">
+        <ion-icon name="heart-dislike-outline"></ion-icon>
+        <h3>No favorite products yet</h3>
+        <p>Add products to your favorites to see them here.</p>
+      </div>
+    </ng-template>
+
+    <section class="favorites-section secondary" *ngIf="hasShopResults">
+      <div class="section-heading">
+        <h2>Saved shops</h2>
+        <ion-button fill="clear" size="small" class="see-all" (click)="segmentValue = 'shops'">
+          See all
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="shops-list">
+        <div class="shop-item" *ngFor="let shop of getFilteredShops() | slice:0:3">
+          <div class="shop-media">
+            <img
+              [src]="shop.image"
+              alt="{{ shop.name }}"
+              title="{{ shop.name }} · {{ shop.location }}"
+              loading="lazy"
+            />
+          </div>
+          <div class="shop-body">
+            <h3>{{ shop.name }}</h3>
+            <p>{{ shop.category }}</p>
+            <div class="shop-meta">
+              <span>
+                <ion-icon name="star"></ion-icon>
+                {{ shop.rating }} ({{ shop.reviews }})
+              </span>
+              <span>
+                <ion-icon name="navigate-outline"></ion-icon>
+                {{ shop.distance }} • {{ shop.location }}
+              </span>
+            </div>
+          </div>
+          <ion-button fill="clear" class="favorite-button" (click)="toggleSave(shop)">
+            <ion-icon [name]="shop.saved ? 'heart' : 'heart-outline'"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="segment-content" *ngIf="segmentValue === 'shops'">
+    <section class="favorites-section" *ngIf="hasShopResults; else noShopFavorites">
+      <h2>Saved shops</h2>
+      <div class="shops-grid">
+        <ion-card class="shop-card" *ngFor="let shop of getFilteredShops()">
+          <div class="card-media">
+            <img
+              [src]="shop.image"
+              alt="{{ shop.name }}"
+              title="{{ shop.name }} · {{ shop.location }}"
+              loading="lazy"
+            />
+            <ion-button fill="solid" size="small" class="distance-chip">
+              <ion-icon name="navigate-outline" slot="start"></ion-icon>
+              {{ shop.distance }} • {{ shop.location }}
+            </ion-button>
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>{{ shop.name }}</h3>
+              <ion-button fill="clear" class="favorite-button" (click)="toggleSave(shop)">
+                <ion-icon [name]="shop.saved ? 'heart' : 'heart-outline'"></ion-icon>
+              </ion-button>
+            </div>
+            <p class="meta">{{ shop.category }}</p>
+            <div class="rating-row">
+              <ion-icon name="star"></ion-icon>
+              <span>{{ shop.rating }}</span>
+              <span class="reviews">• {{ shop.reviews }} reviews</span>
+            </div>
+          </div>
+        </ion-card>
+      </div>
+    </section>
+
+    <ng-template #noShopFavorites>
+      <div class="empty-state">
+        <ion-icon name="business-outline"></ion-icon>
+        <h3>No favorite shops yet</h3>
+        <p>Browse stores and tap the heart icon to save them.</p>
+      </div>
+    </ng-template>
+  </div>
+</ion-content>

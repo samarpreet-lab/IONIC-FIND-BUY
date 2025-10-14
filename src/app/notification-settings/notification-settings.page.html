@@ -1,0 +1,108 @@
+<ion-header [translucent]="true" class="notifications-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab5" text="" icon="chevron-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notification Settings</ion-title>
+    <ion-buttons slot="end">
+      <ion-badge class="role-pill">Customer</ion-badge>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="notifications-page">
+  <div class="page-scroll">
+    <section class="card intro-card">
+      <div class="intro-icon">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </div>
+      <div class="intro-copy">
+        <h2>{{ introCard.title }}</h2>
+        <p>{{ introCard.message }}</p>
+      </div>
+    </section>
+
+    <section class="card settings-card">
+      <div class="section-heading">
+        <h2>General</h2>
+        <p>Choose what alerts you want on each channel.</p>
+      </div>
+      <ion-list lines="none">
+        <ion-item class="setting-item" *ngFor="let toggle of generalToggles">
+          <div class="item-copy">
+            <h3>{{ toggle.label }}</h3>
+            <p>{{ toggle.description }}</p>
+          </div>
+          <ion-toggle
+            slot="end"
+            mode="md"
+            [(ngModel)]="notificationState[toggle.key]"
+          ></ion-toggle>
+        </ion-item>
+      </ion-list>
+    </section>
+
+    <section class="card settings-card">
+      <div class="section-heading">
+        <h2>Nearby updates</h2>
+        <p>Get notified about buzzworthy hotspots within your radius.</p>
+      </div>
+      <ion-list lines="none">
+        <ion-item class="setting-item" *ngFor="let toggle of nearbyToggles">
+          <div class="item-copy">
+            <h3>{{ toggle.label }}</h3>
+            <p>{{ toggle.description }}</p>
+          </div>
+          <ion-toggle
+            slot="end"
+            mode="md"
+            [(ngModel)]="notificationState[toggle.key]"
+          ></ion-toggle>
+        </ion-item>
+      </ion-list>
+    </section>
+
+    <section class="card radius-card">
+      <div class="radius-head">
+        <div>
+          <h2>Discovery radius</h2>
+          <p>{{ radiusLabel }}</p>
+        </div>
+        <ion-button
+          fill="outline"
+          shape="round"
+          size="small"
+          class="location-button"
+        >
+          Use current location
+        </ion-button>
+      </div>
+      <ion-range
+        class="radius-range"
+        min="1"
+        max="25"
+        step="1"
+        mode="md"
+        [value]="radiusDisplay.value"
+        disabled="true"
+      >
+        <ion-icon slot="start" name="walk-outline"></ion-icon>
+        <ion-icon slot="end" name="navigate-outline"></ion-icon>
+      </ion-range>
+      <div class="range-labels">
+        <span>1 km</span>
+        <span>10 km</span>
+        <span>25 km</span>
+      </div>
+    </section>
+
+    <div class="action-bar">
+      <ion-button fill="outline" class="reset-button" (click)="onReset()">
+        Reset to defaults
+      </ion-button>
+      <ion-button class="save-button" expand="block" (click)="onSave()">
+        Save changes
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

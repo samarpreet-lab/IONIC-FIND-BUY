@@ -1,0 +1,347 @@
+.location-page {
+	--background: transparent;
+	background: var(--app-background-gradient);
+	color: #1f1f1f;
+	font-family: 'Poppins', 'Inter', sans-serif;
+}
+
+.location-header ion-toolbar {
+	--background: #ffffff;
+	--color: #1f1f1f;
+	--border-width: 0 0 1px 0;
+	font-weight: 700;
+}
+
+.location-header ion-back-button {
+	color: #290a70;
+}
+
+.role-pill {
+	--background: rgba(41, 10, 112, 0.12);
+	--color: #290a70;
+	font-weight: 600;
+	padding: 0.35rem 0.65rem;
+	border-radius: 999px;
+	text-transform: none;
+	letter-spacing: 0.02em;
+}
+
+.page-scroll {
+	padding: 1.5rem 1rem 2.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.75rem;
+}
+
+.map-card {
+	background: #ffffff;
+	border-radius: 26px;
+	box-shadow: 0 18px 40px rgba(41, 10, 112, 0.08);
+	padding: 1.5rem 1.25rem 1.75rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+.card-top {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 1.5rem;
+}
+
+.card-top h2 {
+	margin: 0;
+	font-size: 1.35rem;
+	font-weight: 700;
+}
+
+.card-top p {
+	margin: 0.35rem 0 0;
+	color: #8e9096;
+	font-size: 0.95rem;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.radius-value {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 74px;
+	padding: 0.4rem 0.85rem;
+	border-radius: 999px;
+	background: rgba(41, 10, 112, 0.1);
+	color: #290a70;
+	font-weight: 700;
+	font-size: 0.95rem;
+}
+
+.map-illustration {
+	position: relative;
+	height: 180px;
+	border-radius: 22px;
+	overflow: hidden;
+	background:
+		linear-gradient(135deg, rgba(41, 10, 112, 0.12), rgba(103, 64, 196, 0.12)),
+		repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.28) 0, rgba(255, 255, 255, 0.28) 1px, transparent 1px, transparent 16px),
+		repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.28) 0, rgba(255, 255, 255, 0.28) 1px, transparent 1px, transparent 16px);
+}
+
+.map-illustration::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(circle at 30% 30%, rgba(41, 10, 112, 0.12), transparent 60%), radial-gradient(circle at 70% 60%, rgba(255, 149, 0, 0.22), transparent 55%);
+	mix-blend-mode: screen;
+}
+
+.map-pin {
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #ffffff;
+	font-size: 0.85rem;
+	box-shadow: 0 10px 22px rgba(41, 10, 112, 0.18);
+}
+
+.pin-primary {
+	background: #290a70;
+	top: 55%;
+	left: 38%;
+}
+
+.pin-primary::before {
+	content: '\25CF';
+}
+
+.pin-secondary {
+	background: #f5a524;
+	top: 30%;
+	right: 24%;
+	box-shadow: 0 10px 22px rgba(245, 165, 36, 0.35);
+}
+
+.pin-secondary::before {
+	content: '\25CF';
+}
+
+.pin-tertiary {
+	background: #28b5b5;
+	bottom: 18%;
+	left: 18%;
+}
+
+.pin-tertiary::before {
+	content: '\25CF';
+}
+
+.radius-range {
+	--bar-background: rgba(41, 10, 112, 0.12);
+	--bar-background-active: #290a70;
+	--knob-background: #ffffff;
+	--knob-border-radius: 12px;
+	--knob-size: 26px;
+	--knob-box-shadow: 0 12px 24px rgba(41, 10, 112, 0.25);
+}
+
+.radius-range ion-icon {
+	color: #8e9096;
+}
+
+.range-labels {
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.8rem;
+	color: #8e9096;
+	padding: 0 0.35rem;
+}
+
+.preset-segment {
+	margin-top: 0.75rem;
+	--background: #f2f2f4;
+	border-radius: 14px;
+	padding: 0.35rem;
+}
+
+.preset-segment ion-segment-button {
+	--background: transparent;
+	--color: #5a5c7a;
+	--color-checked: #ffffff;
+	--indicator-color: transparent;
+	--indicator-height: 0;
+	--border-radius: 12px;
+	padding: 0.65rem 0.85rem;
+}
+
+.preset-segment ion-segment-button.ion-activated {
+	background: #290a70;
+	color: #ffffff;
+	box-shadow: 0 12px 24px rgba(41, 10, 112, 0.22);
+}
+
+.preset-segment ion-label {
+	display: flex;
+	flex-direction: column;
+	gap: 0.1rem;
+}
+
+.preset-segment ion-label strong {
+	font-size: 0.95rem;
+	font-weight: 700;
+}
+
+.preset-segment ion-label span {
+	font-size: 0.75rem;
+	font-weight: 500;
+	opacity: 0.8;
+}
+
+.settings-section {
+	background: #ffffff;
+	border-radius: 24px;
+	box-shadow: 0 18px 40px rgba(41, 10, 112, 0.08);
+	padding: 1.35rem 1rem 1.1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.85rem;
+}
+
+.section-header h2 {
+	margin: 0;
+	font-size: 1.1rem;
+	font-weight: 700;
+}
+
+ion-list {
+	background: transparent;
+}
+
+
+.setting-item {
+	--background: transparent;
+	--inner-padding-start: 0;
+	--inner-padding-end: 0;
+	--padding-start: 0;
+	--padding-end: 0;
+	--min-height: 72px;
+	margin-bottom: 0.75rem;
+	border-radius: 22px;
+	background: transparent;
+	overflow: hidden;
+	position: relative;
+}
+
+.setting-item:last-child {
+	margin-bottom: 0;
+}
+
+.setting-item::part(container) {
+	border-radius: inherit;
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 252, 0.98));
+	box-shadow: 0 18px 32px rgba(41, 10, 112, 0.08);
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+	padding: 1.05rem 1.25rem;
+	transform: translateY(0);
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.setting-item::part(native) {
+	border-radius: inherit;
+	background: transparent;
+}
+
+.setting-item::part(detail-icon) {
+	color: rgba(41, 10, 112, 0.18);
+}
+
+.setting-item:hover::part(container) {
+	box-shadow: 0 22px 40px rgba(41, 10, 112, 0.12);
+	transform: translateY(-1px);
+}
+
+.item-copy h3 {
+	margin: 0;
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.item-copy p {
+	margin: 0.25rem 0 0;
+	font-size: 0.85rem;
+	font-weight: 500;
+	color: #8e9096;
+}
+
+ion-toggle {
+	--handle-background: #ffffff;
+	--handle-box-shadow: 0 6px 16px rgba(41, 10, 112, 0.25);
+	--track-background: rgba(41, 10, 112, 0.12);
+	--track-background-checked: #290a70;
+	--handle-background-checked: #ffffff;
+}
+
+.helper-text {
+	margin: 0;
+	font-size: 0.8rem;
+	color: #8e9096;
+	font-weight: 500;
+}
+
+.action-bar {
+	display: flex;
+	flex-direction: column;
+	gap: 0.85rem;
+}
+
+.action-bar ion-button {
+	--border-radius: 999px;
+	--padding-top: 1.05rem;
+	--padding-bottom: 1.05rem;
+	--border-width: 0;
+	--border-color: transparent;
+	font-weight: 600;
+	text-transform: none;
+	outline: none;
+}
+
+.map-button {
+	--border-color: rgba(41, 10, 112, 0.45);
+	--color: #290a70;
+	--ripple-color: rgba(41, 10, 112, 0.18);
+}
+
+.save-button {
+	--background: linear-gradient(135deg, #290a70, #5a35b5);
+	--color: #ffffff;
+	--border-width: 0;
+	--border-color: transparent;
+	box-shadow: 0 14px 30px rgba(41, 10, 112, 0.3);
+}
+
+.save-button::part(native) {
+	border: none;
+}
+
+@media (max-width: 480px) {
+	.page-scroll {
+		padding: 1.35rem 0.85rem 2.25rem;
+	}
+
+	.map-card {
+		padding: 1.35rem 1.1rem 1.5rem;
+	}
+
+	.map-illustration {
+		height: 160px;
+	}
+
+	.settings-section {
+		padding: 1.1rem 0.9rem 1rem;
+	}
+}

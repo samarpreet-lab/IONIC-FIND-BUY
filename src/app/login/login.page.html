@@ -1,0 +1,66 @@
+<ion-content class="login-page">
+  <section class="hero">
+    <ion-img
+      class="hero-logo"
+      src="assets/logo.png"
+      alt="Find &amp; Buy"
+    ></ion-img>
+  </section>
+
+  <div class="login-container">
+    <ion-card class="login-card">
+      <ion-card-header>
+        <ion-card-title>Log in</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item class="input-item">
+            <ion-input placeholder="Email address" type="email"></ion-input>
+          </ion-item>
+
+          <ion-item class="input-item">
+            <ion-input placeholder="Password" type="password"></ion-input>
+          </ion-item>
+
+          <div class="actions-row">
+            <ion-item class="remember-item" lines="none">
+              <ion-checkbox slot="start"></ion-checkbox>
+              <ion-label>Remember me</ion-label>
+            </ion-item>
+            <ion-button fill="clear" class="forgot-link" size="small">
+              Forgot password?
+            </ion-button>
+          </div>
+        </ion-list>
+
+        <ion-button expand="block" class="login-button" routerLink="/tabs/tab1" routerDirection="root">
+          Log in
+        </ion-button>
+
+        <div class="divider">
+          <span></span>
+          <p>or continue with</p>
+          <span></span>
+        </div>
+
+        <div class="social-icons">
+          <button type="button" class="social-icon google" aria-label="Continue with Google">
+            <ion-icon name="logo-google"></ion-icon>
+          </button>
+
+          <button type="button" class="social-icon facebook" aria-label="Continue with Facebook">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </button>
+        </div>
+
+        <p class="signup-text">
+          <span class="signup-label">Don't have an account?</span>
+          <ion-button fill="clear" class="signup-link" routerLink="/signup" routerDirection="forward" size="small">
+            Sign up
+          </ion-button>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
