@@ -74,14 +74,5 @@ export class NotificationSettingsPage {
     label: '3 km around your location'
   } as const;
 
-  onReset(): void {
-    this.notificationState = { ...this.defaultState };
-  }
-
-  onSave(): void {
-    // Placeholder for API integration.
-  }
-
-  get radiusLabel(): string {
-    return this.radiusDisplay.label;
-  }}
+ 
+}

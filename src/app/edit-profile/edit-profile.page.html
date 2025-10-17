@@ -21,10 +21,7 @@
         <p>{{ profileSummary.joined }}</p>
         <small>This info is private and visible only to you.</small>
       </div>
-      <ion-button fill="outline" shape="round" class="change-avatar" (click)="onAvatarChange()">
-        <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
-        Change
-      </ion-button>
+      <!-- Avatar change removed for display-only mode -->
     </section>
 
     <section class="card section-card">
@@ -35,35 +32,19 @@
         <div class="field-group">
           <label class="field-label" for="fullName">Full name</label>
           <div class="field-control">
-            <ion-input
-              id="fullName"
-              type="text"
-              [(ngModel)]="formState.fullName"
-              placeholder="Enter your full name"
-            ></ion-input>
+            <div class="static-field">{{ profileSummary.name }}</div>
           </div>
         </div>
         <div class="field-group">
           <label class="field-label" for="username">Username</label>
           <div class="field-control">
-            <ion-input
-              id="username"
-              type="text"
-              [(ngModel)]="formState.username"
-              placeholder="@username"
-            ></ion-input>
+            <div class="static-field">{{ profileSummary.username }}</div>
           </div>
         </div>
         <div class="field-group">
           <label class="field-label" for="bio">Bio</label>
           <div class="field-control">
-            <ion-textarea
-              id="bio"
-              auto-grow="true"
-              rows="3"
-              [(ngModel)]="formState.bio"
-              placeholder="Share something short about yourself"
-            ></ion-textarea>
+            <div class="static-field">{{ profileSummary.bio }}</div>
           </div>
         </div>
       </div>
@@ -79,9 +60,7 @@
             <h3>{{ field.label }}</h3>
             <p>{{ field.value }}</p>
           </div>
-          <ion-button fill="outline" size="small" shape="round" (click)="onFieldAction(field)">
-            {{ field.actionLabel }}
-          </ion-button>
+          <!-- Action removed in display-only mode -->
         </ion-item>
       </ion-list>
     </section>
@@ -96,20 +75,13 @@
             <h3>{{ pref.label }}</h3>
             <p>{{ pref.subtitle }}</p>
           </div>
-          <ion-button fill="outline" size="small" shape="round" (click)="onFieldAction(pref)">
-            {{ pref.actionLabel }}
-          </ion-button>
+          <!-- Action removed in display-only mode -->
         </ion-item>
       </ion-list>
     </section>
 
     <div class="action-bar">
-      <ion-button fill="outline" class="secondary-action" (click)="onCancel()">
-        Cancel
-      </ion-button>
-      <ion-button class="primary-action" expand="block" (click)="onSave()">
-        Save changes
-      </ion-button>
+      <!-- Actions removed for read-only profile -->
     </div>
   </div>
 </ion-content>

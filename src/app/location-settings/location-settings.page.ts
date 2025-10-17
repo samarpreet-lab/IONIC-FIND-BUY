@@ -3,12 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
-type PermissionKey = 'locationAccess' | 'preciseLocation' | 'backgroundUpdates';
-type PreferenceKey = 'showOnlyOpen' | 'prioritizeLocal';
-type ToggleConfig<K extends string> = {
+type ToggleConfig = {
   label: string;
   description: string;
-  key: K;
+  key: string;
 };
 
 @Component({
@@ -19,7 +17,7 @@ type ToggleConfig<K extends string> = {
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class LocationSettingsPage {
-  readonly permissionToggles: ToggleConfig<PermissionKey>[] = [
+  readonly permissionToggles: ToggleConfig[] = [
     {
       label: 'Location access',
       description: 'Allow while using the app',
@@ -37,7 +35,7 @@ export class LocationSettingsPage {
     }
   ];
 
-  readonly preferenceToggles: ToggleConfig<PreferenceKey>[] = [
+  readonly preferenceToggles: ToggleConfig[] = [
     {
       label: 'Show only open now',
       description: 'Hide shops that are closed',
@@ -50,7 +48,7 @@ export class LocationSettingsPage {
     }
   ];
 
-  readonly settingsState: Record<PermissionKey | PreferenceKey, boolean> = {
+  readonly settingsState: Record<string, boolean> = {
     locationAccess: false,
     preciseLocation: false,
     backgroundUpdates: false,

@@ -24,17 +24,17 @@ type TopicOption = {
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ContactSupportPage {
-  readonly supportSummary = {
+  supportSummary = {
     title: "We're here to help",
     message: "Tell us what's going on. We'll reply by email."
   };
 
-  readonly userDetails = {
+  userDetails = {
     email: 'gurpreet.singh@punjabmail.com',
     name: 'Gurpreet Singh'
   };
 
-  readonly topicOptions: TopicOption[] = [
+  topicOptions: TopicOption[] = [
     { value: 'orders', label: 'Orders & tracking' },
     { value: 'payments', label: 'Payments & refunds' },
     { value: 'store-owner', label: 'Store owner support' },

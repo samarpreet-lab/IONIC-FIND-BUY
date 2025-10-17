@@ -66,13 +66,14 @@
       <div class="radius-head">
         <div>
           <h2>Discovery radius</h2>
-          <p>{{ radiusLabel }}</p>
+          <p>{{ radiusDisplay.label }}</p>
         </div>
         <ion-button
           fill="outline"
           shape="round"
           size="small"
           class="location-button"
+          disabled
         >
           Use current location
         </ion-button>
@@ -96,13 +97,6 @@
       </div>
     </section>
 
-    <div class="action-bar">
-      <ion-button fill="outline" class="reset-button" (click)="onReset()">
-        Reset to defaults
-      </ion-button>
-      <ion-button class="save-button" expand="block" (click)="onSave()">
-        Save changes
-      </ion-button>
-    </div>
+    <!-- Actions removed for display-only (toggles remain interactive) -->
   </div>
 </ion-content>

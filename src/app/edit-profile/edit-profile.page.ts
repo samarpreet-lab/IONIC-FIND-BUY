@@ -1,31 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
-type ContactField = {
-  key: 'email' | 'phone';
-  label: string;
-  value: string;
-  actionLabel: string;
-};
-
-type PreferenceField = {
-  key: 'radius' | 'notifications';
-  label: string;
-  subtitle: string;
-  actionLabel: string;
-};
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.page.html',
   styleUrls: ['./edit-profile.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule]
 })
 export class EditProfilePage {
-  readonly profileSummary = {
+  profileSummary = {
     name: 'Gurpreet Singh',
     bio: 'Amritsar foodie supporting local artisans and vibrant bazaars.',
     username: '@gurpreet_s',
@@ -34,7 +19,7 @@ export class EditProfilePage {
 
   avatarUrl = '/assets/sikh.jpg';
 
-  readonly contactFields: ContactField[] = [
+  contactFields = [
     {
       key: 'email',
       label: 'Email',
@@ -49,7 +34,7 @@ export class EditProfilePage {
     }
   ];
 
-  readonly preferenceFields: PreferenceField[] = [
+  preferenceFields = [
     {
       key: 'radius',
       label: 'Discovery radius',
@@ -64,30 +49,4 @@ export class EditProfilePage {
     }
   ];
 
-  formState = {
-    fullName: this.profileSummary.name,
-    username: this.profileSummary.username,
-    bio: this.profileSummary.bio
-  };
-
-  onAvatarChange(): void {
-    // Placeholder for image picker integration.
-  }
-
-  onFieldAction(_field: ContactField | PreferenceField): void {
-    // Placeholder for future edit dialogs.
-  }
-
-  onCancel(): void {
-    // Reset form values to initial snapshot.
-    this.formState = {
-      fullName: this.profileSummary.name,
-      username: this.profileSummary.username,
-      bio: this.profileSummary.bio
-    };
-  }
-
-  onSave(): void {
-    // Future API integration point; currently no-op.
-  }
 }
