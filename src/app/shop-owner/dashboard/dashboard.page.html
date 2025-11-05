@@ -1,13 +1,45 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>dashboard</ion-title>
+    <ion-title>My Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">dashboard</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Business Overview Card -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Welcome, Shop Owner!</ion-card-title>
+      <ion-card-subtitle>Here's your shop's status</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      You can manage your products and shop profile from here.
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Quick Actions Card -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Quick Actions</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="addProduct()" expand="block" color="primary">Add New Product</ion-button>
+      <ion-button (click)="manageInventory()" expand="block" color="secondary">Manage Inventory</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Recent Notifications List -->
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Recent Notifications</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>New inquiry for Product X</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Low stock on Product Y</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Order #12345 completed successfully</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
