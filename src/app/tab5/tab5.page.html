@@ -1,81 +1,149 @@
-<ion-content [fullscreen]="true" class="profile-page">
-  <div class="title-block">
-      <h1>Profile</h1>
+<div *ngIf="(userRole$ | async) as role">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>
+        <span *ngIf="role === 'customer'">My Profile</span>
+        <span *ngIf="role === 'shop_owner'">My Account</span>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true" class="profile-page">
+    <div class="title-block">
+      <h1>
+        <span *ngIf="role === 'customer'">Profile</span>
+        <span *ngIf="role === 'shop_owner'">Account</span>
+      </h1>
     </div>
-  <div class="profile-scroll">
-    <section class="profile-card">
-      <div class="profile-top">
-        <ion-avatar class="profile-avatar" aria-hidden="true">
-          <span>{{ profileInitials }}</span>
-        </ion-avatar>
-        <div class="profile-info">
-          <div class="name-row">
-            <h1>{{ profileSummary.name }}</h1>
-            <ion-badge class="role-badge">{{ profileSummary.role }}</ion-badge>
+
+    <div class="profile-scroll">
+      <section class="profile-card">
+        <div class="profile-top">
+          <ion-avatar class="profile-avatar" aria-hidden="true">
+            <span>{{ profileInitials }}</span>
+          </ion-avatar>
+          <div class="profile-info">
+            <div class="name-row">
+              <h1>{{ profileSummary.name }}</h1>
+              <ion-badge class="role-badge">{{ role === 'customer' ? 'Customer' : 'Shop Owner' }}</ion-badge>
+            </div>
+            <p>
+              {{ profileSummary.joinDate }}
+              <span class="dot" *ngIf="role === 'customer'">•</span>
+              <span class="dot" *ngIf="role === 'customer'">{{ profileSummary.favorites }} favorites</span>
+            </p>
           </div>
-          <p>
-            {{ profileSummary.joinDate }}
-            <span class="dot">•</span>
-            {{ profileSummary.favorites }} favorites
-          </p>
         </div>
-      </div>
+      </section>
 
-    </section>
-
-    <section class="section-card">
-      <div class="section-heading">
-        <h2>Account</h2>
-      </div>
-      <ion-list lines="none">
-        <ion-item
-          [routerLink]="action.routerLink"
-          button
-          detail="false"
-          class="action-item"
-          *ngFor="let action of accountActions"
-        >
-          <div class="item-icon" [class.primary]="action.emphasis === 'primary'">
-            <ion-icon [name]="action.icon"></ion-icon>
+      <!-- Customer View -->
+      <div *ngIf="role === 'customer'">
+        <section class="section-card">
+          <div class="section-heading">
+            <h2>Account</h2>
           </div>
-          <ion-label>
-            <h3>{{ action.label }}</h3>
-            <p>{{ action.description }}</p>
-          </ion-label>
-          <ion-icon class="chevron" slot="end" name="chevron-forward-outline"></ion-icon>
-        </ion-item>
-      </ion-list>
-    </section>
+          <ion-list lines="none">
+            <ion-item
+              [routerLink]="action.routerLink"
+              button
+              detail="false"
+              class="action-item"
+              *ngFor="let action of customerActions"
+            >
+              <div class="item-icon" [class.primary]="action.emphasis === 'primary'">
+                <ion-icon [name]="action.icon"></ion-icon>
+              </div>
+              <ion-label>
+                <h3>{{ action.label }}</h3>
+                <p>{{ action.description }}</p>
+              </ion-label>
+              <ion-icon class="chevron" slot="end" name="chevron-forward-outline"></ion-icon>
+            </ion-item>
+          </ion-list>
+        </section>
 
-    <section class="section-card">
-      <div class="section-heading">
-        <h2>Support</h2>
-      </div>
-      <ion-list lines="none">
-        <ion-item
-          [routerLink]="action.routerLink"
-          button
-          detail="false"
-          class="action-item"
-          *ngFor="let action of supportActions"
-        >
-          <div class="item-icon tertiary">
-            <ion-icon [name]="action.icon"></ion-icon>
+        <section class="section-card">
+          <div class="section-heading">
+            <h2>Support</h2>
           </div>
-          <ion-label>
-            <h3>{{ action.label }}</h3>
-            <p>{{ action.description }}</p>
-          </ion-label>
-          <ion-icon class="chevron" slot="end" name="chevron-forward-outline"></ion-icon>
-        </ion-item>
-      </ion-list>
-    </section>
+          <ion-list lines="none">
+            <ion-item
+              [routerLink]="action.routerLink"
+              button
+              detail="false"
+              class="action-item"
+              *ngFor="let action of supportActions"
+            >
+              <div class="item-icon tertiary">
+                <ion-icon [name]="action.icon"></ion-icon>
+              </div>
+              <ion-label>
+                <h3>{{ action.label }}</h3>
+                <p>{{ action.description }}</p>
+              </ion-label>
+              <ion-icon class="chevron" slot="end" name="chevron-forward-outline"></ion-icon>
+            </ion-item>
+          </ion-list>
+        </section>
+      </div>
 
-    <section class="bottom-actions">
-      <ion-button expand="block" color="danger" class="sign-out" routerLink="/login">
-        <ion-icon slot="start" name="log-out-outline"></ion-icon>
-        Sign out
-      </ion-button>
-    </section>
-  </div>
-</ion-content>
+      <!-- Shop Owner View -->
+      <div *ngIf="role === 'shop_owner'">
+        <section class="section-card">
+          <div class="section-heading">
+            <h2>Shop Management</h2>
+          </div>
+          <ion-list lines="none">
+            <ion-item
+              [routerLink]="action.routerLink"
+              button
+              detail="false"
+              class="action-item"
+              *ngFor="let action of shopOwnerActions"
+            >
+              <div class="item-icon" [class.primary]="action.emphasis === 'primary'">
+                <ion-icon [name]="action.icon"></ion-icon>
+              </div>
+              <ion-label>
+                <h3>{{ action.label }}</h3>
+                <p>{{ action.description }}</p>
+              </ion-label>
+              <ion-icon class="chevron" slot="end" name="chevron-forward-outline"></ion-icon>
+            </ion-item>
+          </ion-list>
+        </section>
+
+        <section class="section-card">
+          <div class="section-heading">
+            <h2>Support</h2>
+          </div>
+          <ion-list lines="none">
+            <ion-item
+              [routerLink]="action.routerLink"
+              button
+              detail="false"
+              class="action-item"
+              *ngFor="let action of supportActions"
+            >
+              <div class="item-icon tertiary">
+                <ion-icon [name]="action.icon"></ion-icon>
+              </div>
+              <ion-label>
+                <h3>{{ action.label }}</h3>
+                <p>{{ action.description }}</p>
+              </ion-label>
+              <ion-icon class="chevron" slot="end" name="chevron-forward-outline"></ion-icon>
+            </ion-item>
+          </ion-list>
+        </section>
+      </div>
+
+      <section class="bottom-actions">
+        <ion-button expand="block" color="danger" class="logout" (click)="logout()">
+          <ion-icon slot="start" name="log-out-outline"></ion-icon>
+          Logout
+        </ion-button>
+      </section>
+    </div>
+  </ion-content>
+</div>

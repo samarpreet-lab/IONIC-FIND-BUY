@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { RoleService, UserRole } from '../services/role.service';
 
 type ProfileAction = {
   label: string;
@@ -19,6 +21,7 @@ type ProfileAction = {
   imports: [IonicModule, CommonModule, RouterModule]
 })
 export class Tab5Page {
+  public userRole$: Observable<UserRole>;
 
   readonly profileSummary = {
     name: 'Gurpreet Singh',
@@ -27,7 +30,7 @@ export class Tab5Page {
     role: 'Customer'
   };
 
-  readonly accountActions: ProfileAction[] = [
+  readonly customerActions: ProfileAction[] = [
     {
       label: 'Edit Profile',
       description: 'Update your name, photo, and bio',
@@ -49,6 +52,26 @@ export class Tab5Page {
     }
   ];
 
+  readonly shopOwnerActions: ProfileAction[] = [
+    {
+      label: 'Account Settings',
+      description: 'Manage your account preferences',
+      icon: 'settings-outline',
+      emphasis: 'primary'
+    },
+    {
+      label: 'My Shop Profile',
+      description: 'View and edit your shop information',
+      icon: 'storefront-outline',
+      routerLink: '/shop-owner/shop-profile'
+    },
+    {
+      label: 'Payment Methods',
+      description: 'Manage your payment information',
+      icon: 'card-outline'
+    }
+  ];
+
   readonly supportActions: ProfileAction[] = [
     {
       label: 'Contact Support',
@@ -64,4 +87,14 @@ export class Tab5Page {
     const second = parts[1]?.charAt(0) ?? '';
     return `${first}${second}`.toUpperCase();
   }
+
+  constructor(private roleService: RoleService, private router: Router) {
+    this.userRole$ = this.roleService.role$;
+  }
+
+  public logout(): void {
+    this.roleService.setRole('customer');
+    this.router.navigate(['/login']);
+  }
 }
+
