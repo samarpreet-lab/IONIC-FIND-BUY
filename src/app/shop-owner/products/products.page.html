@@ -1,13 +1,29 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>products</ion-title>
+    <ion-title>My Products</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">products</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-list>
+    <ion-item-sliding *ngFor="let product of myProducts">
+      <ion-item>
+        <ion-label>{{ product.name }}</ion-label>
+        <ion-badge slot="end" [color]="product.inStock ? 'success' : 'danger'">
+          ₹{{ product.price }}
+        </ion-badge>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="editProduct(product.id)">
+          Edit
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addProduct()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
