@@ -66,4 +66,8 @@ export const routes: Routes = [
     path: 'beauty-health',
     loadComponent: () => import('./beauty-health/beauty-health.page').then(m => m.BeautyHealthPage)
   },
+  {
+    path: 'shop-owner',
+    loadChildren: () => import('./shop-owner/tabs/tabs.routes').then((m) => m.routes)
+  },
 ];
