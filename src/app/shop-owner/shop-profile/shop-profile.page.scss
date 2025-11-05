@@ -1,0 +1,478 @@
+.shop-profile-page {
+  --background: #ffffff;
+  padding: 0;
+  color: #1f1f1f;
+
+  .profile-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e8e8ed;
+    padding: 1rem;
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        ion-menu-button {
+          --color: #1f1f1f;
+          padding: 0;
+        }
+
+        .label {
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #1f1f1f;
+        }
+
+        .sublabel {
+          font-size: 0.95rem;
+          font-weight: 400;
+          color: #8e9096;
+        }
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 0.75rem;
+
+        .manage-btn {
+          --color: #290a70;
+          --border-color: #290a70;
+          --padding-start: 0.75rem;
+          --padding-end: 0.75rem;
+          border-radius: 8px;
+          height: 36px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          border: 1.5px solid;
+        }
+
+        .save-btn {
+          --background: #290a70;
+          --color: #ffffff;
+          --padding-start: 0.75rem;
+          --padding-end: 0.75rem;
+          border-radius: 8px;
+          height: 36px;
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 2rem;
+      border-bottom: 1px solid #e8e8ed;
+      margin: 0 -1rem;
+      padding: 0 1rem;
+
+      .tab-item {
+        padding: 0.75rem 0;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #8e9096;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        transition: all 0.3s ease;
+
+        &.active {
+          color: #290a70;
+          border-bottom-color: #290a70;
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    padding: 1.5rem 1rem;
+    padding-bottom: 120px;
+
+    &.basic-info {
+      .shop-info-card {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: #f9f9fb;
+        border-radius: 8px;
+
+        .shop-avatar {
+          flex-shrink: 0;
+
+          img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+
+        .shop-details {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          .shop-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1f1f1f;
+            margin: 0 0 0.1rem 0;
+          }
+
+          .shop-type {
+            font-size: 0.85rem;
+            color: #8e9096;
+            margin: 0 0 0.05rem 0;
+          }
+
+          .shop-since {
+            font-size: 0.85rem;
+            color: #8e9096;
+            margin: 0 0 0.5rem 0;
+          }
+
+          .change-logo-btn {
+            --color: #290a70;
+            --padding-start: 0;
+            --padding-end: 0;
+            margin: 0;
+            height: auto;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            width: fit-content;
+          }
+        }
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+
+      &.form-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 1rem;
+
+        .form-col {
+          display: flex;
+          flex-direction: column;
+
+          label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1f1f1f;
+            margin-bottom: 0.4rem;
+            text-transform: capitalize;
+          }
+        }
+      }
+
+      label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #1f1f1f;
+        margin-bottom: 0.5rem;
+        text-transform: capitalize;
+      }
+
+      .form-input,
+      .form-textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        color: #1f1f1f;
+        background: #ffffff;
+        font-family: inherit;
+        width: 100%;
+        box-sizing: border-box;
+
+        &:focus {
+          outline: none;
+          border-color: #290a70;
+        }
+
+        &::placeholder {
+          color: #c7c7cc;
+        }
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .helper-text {
+        font-size: 0.75rem;
+        color: #8e9096;
+        margin-top: 0.4rem;
+        line-height: 1.4;
+      }
+    }
+
+    &.location-info {
+      .hours-section {
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: #f9f9fb;
+        border-radius: 8px;
+
+        .section-label {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: #8e9096;
+          text-transform: capitalize;
+          margin-bottom: 0.4rem;
+        }
+
+        .section-value {
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #1f1f1f;
+          margin-bottom: 0.5rem;
+        }
+
+        .section-hint {
+          font-size: 0.75rem;
+          color: #8e9096;
+          margin: 0;
+          line-height: 1.3;
+        }
+      }
+
+      .location-section {
+        padding: 1rem;
+        background: #f9f9fb;
+        border-radius: 8px;
+
+        .section-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+
+          .section-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1f1f1f;
+          }
+
+          .section-actions {
+            display: flex;
+            gap: 0.5rem;
+
+            ion-button {
+              --padding-start: 0.5rem;
+              --padding-end: 0.5rem;
+              margin: 0;
+              height: 32px;
+              font-size: 0.75rem;
+              display: flex;
+              align-items: center;
+              gap: 0.35rem;
+
+              &:first-child {
+                --color: #290a70;
+              }
+
+              &.edit-btn {
+                --background: #290a70;
+                --color: #ffffff;
+                border-radius: 6px;
+              }
+            }
+          }
+        }
+
+        .address-fields {
+          .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+
+            .form-col {
+              label {
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: #1f1f1f;
+                margin-bottom: 0.4rem;
+              }
+
+              .form-input {
+                padding: 0.6rem;
+                border: 1px solid #e0e0e0;
+                border-radius: 6px;
+                font-size: 0.9rem;
+                width: 100%;
+                box-sizing: border-box;
+
+                &:focus {
+                  outline: none;
+                  border-color: #290a70;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.photos-info {
+      .location-mini {
+        padding: 1rem;
+        background: #f9f9fb;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+
+        .mini-state {
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: #1f1f1f;
+          margin-bottom: 0.3rem;
+        }
+
+        .mini-postal {
+          font-size: 0.85rem;
+          color: #8e9096;
+          margin-bottom: 0.5rem;
+        }
+
+        .mini-coords {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.75rem;
+          font-size: 0.75rem;
+          color: #8e9096;
+          line-height: 1.5;
+        }
+      }
+
+      .photo-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+
+        .photo-item {
+          aspect-ratio: 1;
+          border-radius: 8px;
+          overflow: hidden;
+          background: #f5f5f7;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .visibility-section {
+        padding: 1rem;
+        background: #f9f9fb;
+        border-radius: 8px;
+
+        h3 {
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #1f1f1f;
+          margin: 0 0 0.5rem 0;
+        }
+
+        .visibility-status {
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: #1f1f1f;
+          margin: 0 0 0.4rem 0;
+        }
+
+        .visibility-desc {
+          font-size: 0.8rem;
+          color: #8e9096;
+          line-height: 1.4;
+          margin: 0 0 0.75rem 0;
+        }
+
+        .visibility-buttons {
+          display: flex;
+          gap: 0.75rem;
+
+          .visibility-btn {
+            --color: #290a70;
+            --border-color: #290a70;
+            flex: 1;
+            border: 1.5px solid;
+            border-radius: 6px;
+            height: 36px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+          }
+        }
+      }
+    }
+  }
+
+  .bottom-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: #ffffff;
+    border-top: 1px solid #e8e8ed;
+    z-index: 100;
+
+    .discard-btn {
+      --color: #290a70;
+      --border-color: #290a70;
+      flex: 1;
+      border: 1.5px solid;
+      border-radius: 8px;
+      height: 44px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .save-profile-btn {
+      --background: #290a70;
+      --color: #ffffff;
+      flex: 1;
+      border-radius: 8px;
+      height: 44px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+  }
+}

@@ -1,35 +1,197 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>My Shop Profile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="shop-profile-page">
+  <!-- Header with Top Actions -->
+  <div class="profile-header">
+    <div class="header-top">
+      <div class="header-left">
+        <ion-menu-button></ion-menu-button>
+        <span class="label">Shop Profile</span>
+        
+      </div>
+      <div class="header-actions">
+        <ion-button fill="outline" class="manage-btn">
+          <ion-icon slot="start" name="image-outline"></ion-icon>
+          Manage photos
+        </ion-button>
+        <ion-button fill="solid" class="save-btn" (click)="saveProfile()">
+          <ion-icon slot="start" name="checkmark"></ion-icon>
+          Save
+        </ion-button>
+      </div>
+    </div>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <ion-list>
-    <ion-list-header>
-      <ion-label>Edit Shop Details</ion-label>
-    </ion-list-header>
+    <!-- Tabs Navigation -->
+    <div class="tabs-nav">
+      <div class="tab-item" [class.active]="activeTab === 'basic'" (click)="setActiveTab('basic')">Basic Info</div>
+      <div class="tab-item" [class.active]="activeTab === 'location'" (click)="setActiveTab('location')">Location</div>
+      <div class="tab-item" [class.active]="activeTab === 'photos'" (click)="setActiveTab('photos')">Photos</div>
+    </div>
+  </div>
 
-    <ion-item>
-      <ion-input label="Shop Name" labelPlacement="stacked" [(ngModel)]="shopProfile.name"></ion-input>
-    </ion-item>
+  <!-- Tab 1: Basic Info -->
+  <div class="tab-content basic-info" *ngIf="activeTab === 'basic'">
+    <!-- Shop Info Card -->
+    <div class="shop-info-card">
+      <div class="shop-avatar">
+        <img [src]="shopProfile.avatar" [alt]="shopProfile.name">
+      </div>
+      <div class="shop-details">
+        <h2 class="shop-name">{{ shopProfile.name }}</h2>
+        <p class="shop-type">{{ shopProfile.type }}</p>
+        <p class="shop-since">Since {{ shopProfile.since }}</p>
+        <ion-button fill="clear" class="change-logo-btn">
+          <ion-icon slot="start" name="pencil-outline"></ion-icon>
+          Change logo
+        </ion-button>
+      </div>
+    </div>
 
-    <ion-item>
-      <ion-input label="Address" labelPlacement="stacked" [(ngModel)]="shopProfile.address"></ion-input>
-    </ion-item>
+    <!-- Shop Name Input -->
+    <div class="form-group">
+      <label>Shop name</label>
+      <input type="text" class="form-input" [(ngModel)]="shopProfile.name">
+    </div>
 
-    <ion-item>
-      <ion-input label="Phone Number" labelPlacement="stacked" [(ngModel)]="shopProfile.phone"></ion-input>
-    </ion-item>
+    <!-- Description Input -->
+    <div class="form-group">
+      <label>Description</label>
+      <textarea class="form-textarea" [(ngModel)]="shopProfile.description"></textarea>
+    </div>
 
-    <ion-item>
-      <ion-input label="Operating Hours" labelPlacement="stacked" [(ngModel)]="shopProfile.hours"></ion-input>
-    </ion-item>
+    <!-- Contact Row -->
+    <div class="form-group form-row">
+      <div class="form-col">
+        <label>Phone</label>
+        <input type="tel" class="form-input" [(ngModel)]="shopProfile.phone">
+      </div>
+      <div class="form-col">
+        <label>Email</label>
+        <input type="email" class="form-input" [(ngModel)]="shopProfile.email">
+      </div>
+    </div>
 
-    <ion-item>
-      <ion-textarea label="Shop Description" labelPlacement="stacked" [(ngModel)]="shopProfile.description"></ion-textarea>
-    </ion-item>
-  </ion-list>
+    <!-- Hours Input -->
+    <div class="form-group">
+      <label>Opening hours</label>
+      <select class="form-input" [(ngModel)]="shopProfile.hours">
+        <option>Mon-Sun, 7:00 AM - 6:00 PM</option>
+        <option>Mon-Fri, 9:00 AM - 5:00 PM</option>
+      </select>
+      <p class="helper-text">Keep hours accurate to help customers discover your shop.</p>
+    </div>
+  </div>
 
-  <ion-button expand="block" (click)="saveChanges()">Save Changes</ion-button>
+  <!-- Tab 2: Location -->
+  <div class="tab-content location-info" *ngIf="activeTab === 'location'">
+    <!-- Hours Display -->
+    <div class="hours-section">
+      <div class="section-label">Opening hours</div>
+      <div class="section-value">{{ shopProfile.hours }}</div>
+      <p class="section-hint">Keep hours accurate to help customers discover your shop.</p>
+    </div>
+
+    <!-- Location Card -->
+    <div class="location-section">
+      <div class="section-header">
+        <span class="section-label">Location</span>
+        <div class="section-actions">
+          <ion-button fill="clear" size="small">
+            <ion-icon name="map-outline"></ion-icon>
+            View map
+          </ion-button>
+          <ion-button fill="solid" size="small" class="edit-btn">
+            <ion-icon slot="start" name="pencil-outline"></ion-icon>
+            Edit location
+          </ion-button>
+        </div>
+      </div>
+
+      <!-- Address Fields -->
+      <div class="address-fields">
+        <div class="form-row">
+          <div class="form-col">
+            <label>Street</label>
+            <input type="text" class="form-input" [(ngModel)]="shopProfile.street">
+          </div>
+          <div class="form-col">
+            <label>City</label>
+            <input type="text" class="form-input" [(ngModel)]="shopProfile.city">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-col">
+            <label>State/Region</label>
+            <input type="text" class="form-input" [(ngModel)]="shopProfile.state">
+          </div>
+          <div class="form-col">
+            <label>Postal code</label>
+            <input type="text" class="form-input" [(ngModel)]="shopProfile.postalCode">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-col">
+            <label>Latitude</label>
+            <input type="text" class="form-input" [(ngModel)]="shopProfile.latitude">
+          </div>
+          <div class="form-col">
+            <label>Longitude</label>
+            <input type="text" class="form-input" [(ngModel)]="shopProfile.longitude">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab 3: Photos -->
+  <div class="tab-content photos-info" *ngIf="activeTab === 'photos'">
+    <!-- Location Mini Card -->
+    <div class="location-mini">
+      <div class="mini-state">{{ shopProfile.state }}</div>
+      <div class="mini-postal">{{ shopProfile.postalCode }}</div>
+      <div class="mini-coords">
+        <span>Latitude</span>
+        <span>{{ shopProfile.latitude }}</span>
+        <span>Longitude</span>
+        <span>{{ shopProfile.longitude }}</span>
+      </div>
+    </div>
+
+    <!-- Photo Gallery -->
+    <div class="photo-gallery">
+      <div class="photo-item" *ngFor="let photo of shopProfile.photos">
+        <img [src]="photo" [alt]="'Shop photo'">
+      </div>
+    </div>
+
+    <!-- Visibility Section -->
+    <div class="visibility-section">
+      <h3>Visibility</h3>
+      <p class="visibility-status">{{ shopProfile.visibility }}</p>
+      <p class="visibility-desc">Your shop is discoverable in the Customer App. Hide if you're temporarily closed.</p>
+      
+      <div class="visibility-buttons">
+        <ion-button fill="clear" class="visibility-btn show-btn">
+          <ion-icon name="eye-outline"></ion-icon>
+          Show
+        </ion-button>
+        <ion-button fill="clear" class="visibility-btn hide-btn">
+          <ion-icon name="eye-off-outline"></ion-icon>
+          Hide
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Action Buttons -->
+  <div class="bottom-actions">
+    <ion-button fill="outline" class="discard-btn" (click)="discardChanges()">
+      <ion-icon name="close"></ion-icon>
+      Discard changes
+    </ion-button>
+    <ion-button fill="solid" class="save-profile-btn" (click)="saveProfile()">
+      <ion-icon slot="start" name="checkmark-done"></ion-icon>
+      Save profile
+    </ion-button>
+  </div>
 </ion-content>

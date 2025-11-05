@@ -11,12 +11,29 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ShopProfilePage implements OnInit {
+  public activeTab: string = 'basic';
+
   public shopProfile = {
-    name: 'My Local Shop',
-    address: '123 Main St, City',
-    phone: '9876543210',
-    hours: '9:00 AM - 6:00 PM',
-    description: 'We sell the best local products!'
+    name: 'Sunrise Bakery',
+    type: 'Local bakery',
+    since: '2012',
+    avatar: 'assets/images/avatar.jpg',
+    description: 'Fresh bread, pastries, and coffee made daily.',
+    phone: '(615) 555-0147',
+    email: 'hello@sunrisebakery.com',
+    hours: 'Mon-Sun, 7:00 AM - 6:00 PM',
+    street: '123 Market St',
+    city: 'Springfield',
+    state: 'CA',
+    postalCode: '96107',
+    latitude: '37.7765',
+    longitude: '-122.4367',
+    photos: [
+      'assets/images/shop-1.jpg',
+      'assets/images/shop-2.jpg',
+      'assets/images/shop-3.jpg'
+    ],
+    visibility: 'Public'
   };
 
   constructor() { }
@@ -24,8 +41,19 @@ export class ShopProfilePage implements OnInit {
   ngOnInit() {
   }
 
+  public setActiveTab(tab: string): void {
+    this.activeTab = tab;
+  }
+
+  public saveProfile(): void {
+    console.log('Saving profile:', this.shopProfile);
+  }
+
+  public discardChanges(): void {
+    console.log('Discarding changes');
+  }
+
   public saveChanges(): void {
     console.log(this.shopProfile);
   }
-
 }
