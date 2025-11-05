@@ -1,29 +1,104 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>My Products</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="products-page">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-top">
+      <div class="header-left">
+        <ion-menu-button></ion-menu-button>
+        <span class="products-label">Products</span>
+      </div>
+      <div class="search-container">
+        <ion-icon name="search"></ion-icon>
+        <input type="text" placeholder="Search products" [(ngModel)]="searchTerm">
+      </div>
+      <ion-button fill="solid" color="primary" class="add-btn" (click)="addProduct()">
+        <ion-icon slot="start" name="add"></ion-icon>
+        Add
+      </ion-button>
+    </div>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <ion-list>
-    <ion-item-sliding *ngFor="let product of myProducts">
-      <ion-item>
-        <ion-label>{{ product.name }}</ion-label>
-        <ion-badge slot="end" [color]="product.inStock ? 'success' : 'danger'">
-          ₹{{ product.price }}
-        </ion-badge>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option color="primary" (click)="editProduct(product.id)">
-          Edit
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+    <!-- Inventory Overview Section -->
+    <div class="inventory-overview">
+      <div class="inventory-header">
+        <span class="inventory-title">Inventory overview</span>
+        <span class="auto-hide-label">Auto-hide sold out</span>
+      </div>
+      
+      <div class="inventory-stats">
+        <div class="stat-item">
+          <div class="stat-label">Active items</div>
+          <div class="stat-value">{{ getActiveItemsCount() }}</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-label">Categories</div>
+          <div class="stat-value">{{ getCategoriesCount() }}</div>
+        </div>
+      </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addProduct()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+      <!-- Categories Filter -->
+      <div class="categories-chips">
+        <div class="chip active">All</div>
+        <div class="chip" *ngFor="let category of categories">{{ category }}</div>
+      </div>
+    </div>
+
+    <!-- Products Count -->
+    <div class="products-count">
+      <span>Showing {{ myProducts.length }}</span>
+    </div>
+  </div>
+
+  <!-- Products List -->
+  <div class="products-list">
+    <div class="product-row" *ngFor="let product of myProducts" [class.sold-out]="!product.inStock">
+      <!-- Product Image -->
+      <div class="product-image-col">
+        <img [src]="product.image" [alt]="product.name" class="product-img">
+      </div>
+
+      <!-- Product Info Column -->
+      <div class="product-info-col">
+        <!-- Product Name and Category -->
+        <div class="product-name-section">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <p class="product-category">{{ product.category }}</p>
+        </div>
+
+        <!-- Price and Stock -->
+        <div class="product-price-section">
+          <p class="product-price">₹{{ product.price }}</p>
+          <span class="stock-info">Stock: {{ product.stock }}</span>
+        </div>
+      </div>
+
+      <!-- Product Actions Column -->
+      <div class="product-actions-col">
+        <!-- Top Action -->
+        <ion-button fill="clear" size="small" class="action-top" (click)="editProduct(product.id)">
+          <ion-icon name="create-outline"></ion-icon>
+          <span>Edit</span>
+        </ion-button>
+
+        <!-- Badge or Middle Action -->
+        <div class="badge-or-action">
+          <ion-badge *ngIf="product.hasSale" color="danger" class="sale-badge">Sale</ion-badge>
+          <ion-button *ngIf="!product.hasSale" fill="clear" size="small" class="action-middle" (click)="archiveProduct(product.id)">
+            <ion-icon name="archive-outline"></ion-icon>
+            <span>Archive</span>
+          </ion-button>
+        </div>
+
+        <!-- Bottom Action -->
+        <ion-button fill="clear" size="small" class="action-bottom" (click)="hideProduct(product.id)">
+          <ion-icon name="eye-off-outline"></ion-icon>
+          <span>Hide</span>
+        </ion-button>
+
+        <!-- Auto-hide Badge -->
+        <div class="auto-hide-badge" *ngIf="!product.inStock">
+          Auto-hide sold out
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
