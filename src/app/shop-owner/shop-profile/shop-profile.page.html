@@ -1,13 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>shop-profile</ion-title>
+    <ion-title>My Shop Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">shop-profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Edit Shop Details</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-input label="Shop Name" labelPlacement="stacked" [(ngModel)]="shopProfile.name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Address" labelPlacement="stacked" [(ngModel)]="shopProfile.address"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Phone Number" labelPlacement="stacked" [(ngModel)]="shopProfile.phone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Operating Hours" labelPlacement="stacked" [(ngModel)]="shopProfile.hours"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea label="Shop Description" labelPlacement="stacked" [(ngModel)]="shopProfile.description"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="saveChanges()">Save Changes</ion-button>
 </ion-content>
