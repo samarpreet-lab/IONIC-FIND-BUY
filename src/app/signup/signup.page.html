@@ -19,6 +19,17 @@
             <ion-input placeholder="Full Name" type="text"></ion-input>
           </ion-item>
 
+          <ion-item>
+            <ion-segment [(ngModel)]="selectedRole" name="role">
+              <ion-segment-button value="customer">
+                <ion-label>I'm a Customer</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="shop_owner">
+                <ion-label>I'm a Shop Owner</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+          </ion-item>
+
           <ion-item class="input-item">
             <ion-input placeholder="Enter Email ID/ Phone No." type="text"></ion-input>
           </ion-item>
@@ -37,7 +48,7 @@
           </ion-item>
         </ion-list>
 
-        <ion-button expand="block" class="signup-button" routerLink="/tabs/tab1" routerDirection="root">
+        <ion-button expand="block" class="signup-button" (click)="onSignup()">
           Sign up
         </ion-button>
 
