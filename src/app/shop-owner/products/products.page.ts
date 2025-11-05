@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
@@ -17,13 +18,13 @@ export class ProductsPage implements OnInit {
     { id: 'p3', name: 'Smart TV', price: 22000, inStock: false }
   ];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   public addProduct(): void {
-    console.log('Navigating to Add Product Page');
+    this.router.navigate(['/shop-owner/add-product']);
   }
 
   public editProduct(productId: string): void {

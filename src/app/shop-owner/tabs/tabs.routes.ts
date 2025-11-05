@@ -22,6 +22,11 @@ export const routes: Routes = [
           import('../shop-profile/shop-profile.page').then((m) => m.ShopProfilePage),
       },
       {
+        path: 'add-product',
+        loadComponent: () =>
+          import('../add-product/add-product.page').then((m) => m.AddProductPage),
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
