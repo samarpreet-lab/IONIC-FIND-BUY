@@ -41,8 +41,8 @@ export class ShopProfilePage implements OnInit {
   ngOnInit() {
   }
 
-  public setActiveTab(tab: string): void {
-    this.activeTab = tab;
+  public setActiveTab(event: any): void {
+    this.activeTab = event.detail.value;
   }
 
   public saveProfile(): void {

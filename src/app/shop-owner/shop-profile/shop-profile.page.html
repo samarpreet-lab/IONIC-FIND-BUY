@@ -20,10 +20,18 @@
     </div>
 
     <!-- Tabs Navigation -->
-    <div class="tabs-nav">
-      <div class="tab-item" [class.active]="activeTab === 'basic'" (click)="setActiveTab('basic')">Basic Info</div>
-      <div class="tab-item" [class.active]="activeTab === 'location'" (click)="setActiveTab('location')">Location</div>
-      <div class="tab-item" [class.active]="activeTab === 'photos'" (click)="setActiveTab('photos')">Photos</div>
+    <div class="segment-wrapper">
+      <ion-segment [value]="activeTab" (ionChange)="setActiveTab($event)">
+        <ion-segment-button value="basic">
+          <ion-label>Basic Info</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="location">
+          <ion-label>Location</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="photos">
+          <ion-label>Photos</ion-label>
+        </ion-segment-button>
+      </ion-segment>
     </div>
   </div>
 
