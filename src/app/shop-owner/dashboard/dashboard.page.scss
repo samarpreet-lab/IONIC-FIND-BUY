@@ -5,7 +5,7 @@
   color: #1f1f1f;
 
   .dashboard-header {
-    padding: 1.5rem 1rem 1rem;
+    padding: 1.5rem 0.75rem 1rem;
     background: #ffffff;
   }
 
@@ -32,6 +32,8 @@
 
   .shop-card {
     margin-bottom: 1.5rem;
+    margin-left: 0.7rem;
+    margin-right: 0.7rem;
     border-radius: 16px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     background: #ffffff;
@@ -147,7 +149,7 @@
   }
 
   .recent-section {
-    padding: 0 1rem 1.5rem;
+    padding: 0 0.75rem 1.5rem;
 
     h3 {
       font-size: 1rem;
@@ -215,9 +217,12 @@
   }
 
   .quick-actions {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 0.75rem;
     background: #ffffff;
     margin-bottom: 1rem;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    border-radius: 16px;
 
     h3 {
       font-size: 1rem;
@@ -264,8 +269,12 @@
   }
 
   .today-section {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 0.75rem;
     background: #ffffff;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    margin-bottom: 1.5rem;
+    border-radius: 16px;
 
     h3 {
       font-size: 1rem;

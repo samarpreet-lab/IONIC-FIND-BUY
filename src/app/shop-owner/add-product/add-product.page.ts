@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
@@ -8,14 +9,21 @@ import { IonicModule } from '@ionic/angular';
   templateUrl: './add-product.page.html',
   styleUrls: ['./add-product.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterLink]
 })
 export class AddProductPage implements OnInit {
-  public newProduct = {
+  public product = {
     name: '',
-    price: null,
     description: '',
-    inStock: true
+    category: '',
+    subcategory: '',
+    sku: '',
+    availability: 'In Stock',
+    price: null,
+    quantity: null,
+    showAtLocation: false,
+    publicListing: false,
+    images: []
   };
 
   constructor() { }
@@ -23,8 +31,14 @@ export class AddProductPage implements OnInit {
   ngOnInit() {
   }
 
-  public saveProduct(): void {
-    console.log('Saving product:', this.newProduct);
+  public publishProduct(): void {
+    console.log('Publishing product:', this.product);
+    // Add your product publish logic here
+  }
+
+  public saveDraft(): void {
+    console.log('Saving product as draft:', this.product);
+    // Add your draft save logic here
   }
 
 }

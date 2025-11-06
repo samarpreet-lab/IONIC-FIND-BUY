@@ -1,31 +1,168 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/shop-owner/dashboard"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Add New Product</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="add-product-page">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="header-top">
+      <ion-button fill="clear" class="back-button" routerLink="/shop-owner/products" routerDirection="back">
+        <ion-icon slot="start" name="chevron-back"></ion-icon>
+      </ion-button>
+      <div class="header-content">
+        <h1>Add Product</h1>
+        <p>Shop Owner • Inventory</p>
+      </div>
+      <ion-button fill="outline" class="draft-button">
+        Draft
+      </ion-button>
+    </div>
+  </div>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <ion-list>
-    <ion-item>
-      <ion-input label="Product Name" labelPlacement="stacked" [(ngModel)]="newProduct.name"></ion-input>
-    </ion-item>
+  <!-- Scrollable Content -->
+  <div class="content-wrapper">
+    <!-- Basics Section -->
+    <div class="form-section">
+      <h2 class="section-title">Basics</h2>
+      
+      <div class="form-group">
+        <label class="form-label">
+          <ion-icon name="pricetag-outline"></ion-icon>
+          Product name
+        </label>
+        <input type="text" class="form-input" placeholder="Enter product name" [(ngModel)]="product.name">
+      </div>
 
-    <ion-item>
-      <ion-input label="Price" labelPlacement="stacked" type="number" [(ngModel)]="newProduct.price"></ion-input>
-    </ion-item>
+      <div class="form-group">
+        <label class="form-label">
+          <ion-icon name="document-text-outline"></ion-icon>
+          Short description
+        </label>
+        <textarea class="form-textarea" placeholder="Brief description" [(ngModel)]="product.description"></textarea>
+      </div>
 
-    <ion-item>
-      <ion-textarea label="Product Description" labelPlacement="stacked" [(ngModel)]="newProduct.description"></ion-textarea>
-    </ion-item>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">
+            <ion-icon name="layers-outline"></ion-icon>
+            Category
+          </label>
+          <select class="form-select" [(ngModel)]="product.category">
+            <option>Select category</option>
+            <option>Bakery</option>
+            <option>Beverages</option>
+            <option>Dairy</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">
+            <ion-icon name="bookmark-outline"></ion-icon>
+            Subcategory
+          </label>
+          <select class="form-select" [(ngModel)]="product.subcategory">
+            <option>Select subcategory</option>
+          </select>
+        </div>
+      </div>
+    </div>
 
-    <ion-item>
-      <ion-label slot="start">In Stock</ion-label>
-      <ion-toggle slot="end" [(ngModel)]="newProduct.inStock"></ion-toggle>
-    </ion-item>
-  </ion-list>
+    <!-- Media Section -->
+    <div class="form-section">
+      <h2 class="section-title">Media</h2>
+      
+      <div class="media-upload">
+        <ion-icon name="image-outline"></ion-icon>
+        <span>Add photos</span>
+      </div>
+      <p class="media-hint">Tip: Use clear, well-lit images of the product in-store.</p>
+    </div>
 
-  <ion-button expand="block" (click)="saveProduct()">Save Product</ion-button>
+    <!-- Inventory Section -->
+    <div class="form-section">
+      <h2 class="section-title">Inventory</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">
+            <ion-icon name="hash"></ion-icon>
+            SKU (optional)
+          </label>
+          <input type="text" class="form-input" placeholder="Enter SKU" [(ngModel)]="product.sku">
+        </div>
+        <div class="form-group">
+          <label class="form-label">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+            Availability
+          </label>
+          <select class="form-select" [(ngModel)]="product.availability">
+            <option>In Stock</option>
+            <option>Out of Stock</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">
+            <ion-icon name="cash-outline"></ion-icon>
+            Price (display only)
+          </label>
+          <input type="number" class="form-input" placeholder="Enter price" [(ngModel)]="product.price">
+        </div>
+        <div class="form-group">
+          <label class="form-label">
+            <ion-icon name="cube-outline"></ion-icon>
+            In-store quantity
+          </label>
+          <input type="number" class="form-input" placeholder="Enter quantity" [(ngModel)]="product.quantity">
+        </div>
+      </div>
+
+      <p class="info-text">No online checkout. Price and stock are for discovery in the Customer App.</p>
+    </div>
+
+    <!-- Visibility Section -->
+    <div class="form-section">
+      <h2 class="section-title">Visibility</h2>
+      
+      <div class="checkbox-group">
+        <input type="checkbox" id="shop-location" [(ngModel)]="product.showAtLocation" class="checkbox-input">
+        <label for="shop-location" class="checkbox-label">
+          <ion-icon name="location-outline"></ion-icon>
+          Show at this shop location
+        </label>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="public-listing" [(ngModel)]="product.publicListing" class="checkbox-input">
+        <label for="public-listing" class="checkbox-label">
+          <ion-icon name="eye-outline"></ion-icon>
+          Public listing
+        </label>
+      </div>
+    </div>
+
+    <!-- Attributes Section -->
+    <div class="form-section">
+      <h2 class="section-title">Attributes</h2>
+      
+      <div class="attribute-group">
+        <label class="attribute-label">
+          <ion-icon name="shirt-outline"></ion-icon>
+          Variant (e.g., Size/Color)
+        </label>
+        <ion-button fill="clear" class="add-option-btn">
+          Add option
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Bottom Actions -->
+    <div class="bottom-actions">
+      <ion-button fill="outline" class="save-draft-btn">
+        <ion-icon slot="start" name="document-outline"></ion-icon>
+        Save draft
+      </ion-button>
+      <ion-button fill="solid" class="publish-btn" (click)="publishProduct()">
+        <ion-icon slot="start" name="checkmark"></ion-icon>
+        Publish
+      </ion-button>
+    </div>
+  </div>
 </ion-content>
