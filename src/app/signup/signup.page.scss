@@ -1,134 +1,298 @@
 .signup-page {
 	--background: #f6f6f8;
-	color: #1f1f1f;
-	min-height: 100%;
-	padding-bottom: 2rem;
+	--padding: 0;
+	--margin: 0;
 
-	.hero {
-		position: relative;
-		padding: 2.75rem 1.25rem 4.5rem;
+	.signup-wrapper {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		background: #ffffff;
+	}
+
+	.hero-section {
+		background: linear-gradient(135deg, #290a70 0%, #3d1d9c 100%);
+		padding: 3rem 1.5rem 2.5rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		background: #290a70;
-		border-bottom-left-radius: 36px;
+		border-bottom-left-radius: 32px;
+		border-bottom-right-radius: 32px;
+		box-shadow: 0 8px 24px rgba(41, 10, 112, 0.15);
+		position: relative;
 
 		.hero-logo {
-			width: 300px;
-			height: 300px;
+			width: 140px;
+			height: 140px;
 			object-fit: contain;
+			margin-bottom: 0.75rem;
 		}
 
-		.hero-logo::part(image) {
-			display: block;
-			clip-path: inset(6px 0 0 0);
+		.hero-title {
+			color: #ffffff;
+			font-size: 1.3rem;
+			font-weight: 700;
+			margin: 0;
+			letter-spacing: 0.5px;
 		}
 	}
 
-	.signup-container {
-		margin: -3rem auto 0;
-		max-width: 420px;
-		padding: 0 1.5rem;
-	}
+	.content-section {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		padding: 2rem 1.5rem;
+		overflow-y: auto;
 
-	.signup-card {
-		border-radius: 28px;
-		box-shadow: 0 16px 30px rgba(0, 0, 0, 0.08);
-		background: #ffffff;
+		.header-text {
+			text-align: center;
+			margin-bottom: 1.5rem;
 
-		ion-card-header {
-			padding: 1.5rem 1.75rem 0.75rem;
-
-			ion-card-title {
-				font-size: 1.7rem;
+			h2 {
+				margin: 0;
+				font-size: 1.5rem;
 				font-weight: 700;
 				color: #1f1f1f;
+				letter-spacing: 0.3px;
 			}
 		}
 
-		ion-card-content {
-			padding: 0.5rem 1.75rem 1.75rem;
+		.form-container {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+
+			.form-group {
+				display: flex;
+				flex-direction: column;
+
+				.form-input {
+					padding: 0.9rem 1rem;
+					border: 1px solid #e8e8ed;
+					border-radius: 12px;
+					font-size: 0.95rem;
+					color: #1f1f1f;
+					background: #f9f9fb;
+					font-family: inherit;
+					transition: all 0.3s ease;
+
+					&::placeholder {
+						color: #c7c7cc;
+					}
+
+					&:focus {
+						outline: none;
+						border-color: #290a70;
+						background: #ffffff;
+						box-shadow: 0 0 0 3px rgba(41, 10, 112, 0.08);
+					}
+				}
+			}
+
+			.role-segment-wrapper {
+				width: 100%;
+
+				.role-segment {
+					--background: #f2f2f4;
+					border-radius: 14px;
+					padding: 0.35rem;
+					display: flex;
+					width: 100%;
+					gap: 0.5rem;
+
+					ion-segment-button {
+						--color: #8e9096;
+						--color-checked: #ffffff;
+						--indicator-color: transparent;
+						--indicator-box-shadow: none;
+						--padding-start: 0.6rem;
+						--padding-end: 0.6rem;
+						--border-radius: 10px;
+						text-transform: uppercase;
+						font-weight: 700;
+						font-size: 0.7rem;
+						flex: 1;
+						min-width: 0;
+						letter-spacing: 0.5px;
+						height: 40px;
+
+						ion-label {
+							white-space: normal;
+							word-break: break-word;
+							display: block;
+							max-width: 100%;
+							line-height: 1.2;
+							font-size: 0.7rem;
+						}
+
+						&.segment-button-has-label:not(.segment-button-disabled).segment-button-checked {
+							--color: #ffffff;
+							background: #290a70;
+							color: #ffffff;
+							transition: background 0.2s ease;
+						}
+					}
+				}
+			}
+
+			.terms-group {
+				display: flex;
+				align-items: flex-start;
+				gap: 0.75rem;
+				margin: 0.5rem 0 1rem 0;
+
+				.terms-checkbox {
+					width: 18px;
+					height: 18px;
+					min-width: 18px;
+					margin-top: 0.25rem;
+					cursor: pointer;
+					accent-color: #290a70;
+				}
+
+				.terms-label {
+					font-size: 0.8rem;
+					color: #555861;
+					line-height: 1.4;
+					cursor: pointer;
+					flex: 1;
+				}
+			}
+
+			.signup-button {
+				--background: #290a70;
+				--background-activated: #1f0755;
+				--border-radius: 12px;
+				--padding-start: 1rem;
+				--padding-end: 1rem;
+				color: #ffffff;
+				font-weight: 600;
+				letter-spacing: 0.02rem;
+				margin-top: 0.5rem;
+				height: 48px;
+				font-size: 1rem;
+			}
+
+			.login-text {
+				margin: 1rem 0 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 0.35rem;
+				font-size: 0.82rem;
+				color: #5c5f69;
+				line-height: 1.4;
+				flex-wrap: wrap;
+
+				.login-label {
+					font-weight: 500;
+				}
+
+				.login-link {
+					--background: transparent;
+					--background-activated: transparent;
+					--padding-start: 0.25rem;
+					--padding-end: 0;
+					--color: #290a70;
+					--color-activated: #1c064c;
+					font-weight: 600;
+					text-decoration: none;
+					height: auto;
+					min-height: 0;
+					font-size: 0.85rem;
+					display: inline-flex;
+					text-transform: none;
+				}
+			}
 		}
 	}
 
-	ion-list {
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-		margin-bottom: 1.5rem;
-	}
+	@media (max-width: 480px) {
+		.hero-section {
+			padding: 2.5rem 1rem 2rem;
 
-	.input-item {
-		--background: #f2f2f4;
-		--border-radius: 18px;
-		--padding-start: 1rem;
-		--inner-padding-end: 1rem;
-		border-radius: 18px;
+			.hero-logo {
+				width: 120px;
+				height: 120px;
+			}
 
-		ion-input {
-			--color: #1f1f1f;
-			--placeholder-color: #8e9096;
-			font-size: 0.95rem;
-		}
-	}
-
-	.terms-item {
-		--min-height: auto;
-		--padding-start: 0;
-		--inner-padding-end: 0;
-		font-size: 0.8rem;
-		color: #555861;
-
-		ion-checkbox {
-			margin-right: 0.75rem;
-		}
-	}
-
-	.signup-button {
-		--background: #290a70;
-		--background-activated: #1f0755;
-		--border-radius: 999px;
-		color: #f9f9fb;
-		font-weight: 600;
-		letter-spacing: 0.02rem;
-		margin-bottom: 1rem;
-	}
-
-	.login-text {
-		margin: 1rem 0 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 0.35rem;
-		font-size: 0.82rem;
-		color: #5c5f69;
-		line-height: 1.4;
-
-		.login-label {
-			font-weight: 500;
+			.hero-title {
+				font-size: 1.2rem;
+			}
 		}
 
-		.login-link {
-			--background: transparent;
-			--background-activated: transparent;
-			--padding-start: 0.25rem;
-			--padding-end: 0;
-			--color: #290a70;
-			--color-activated: #1c064c;
-			font-weight: 600;
-			text-decoration: none;
-			height: auto;
-			min-height: 0;
-			font-size: 0.85rem;
-			display: inline-flex;
-			text-transform: none;
+		.content-section {
+			padding: 1.5rem 1rem;
+
+			.header-text {
+				margin-bottom: 1.25rem;
+
+				h2 {
+					font-size: 1.3rem;
+				}
+			}
+
+			.form-container {
+				gap: 0.9rem;
+
+				.form-group .form-input {
+					padding: 0.8rem 0.9rem;
+					font-size: 0.9rem;
+				}
+
+				.role-segment-wrapper .role-segment {
+					gap: 0.25rem;
+					padding: 0.3rem;
+
+					ion-segment-button {
+						--padding-start: 0.35rem;
+						--padding-end: 0.35rem;
+						font-size: 0.7rem;
+					}
+				}
+
+				.terms-group {
+					margin: 0.25rem 0 0.75rem 0;
+
+					.terms-checkbox {
+						width: 16px;
+						height: 16px;
+					}
+
+					.terms-label {
+						font-size: 0.75rem;
+					}
+				}
+
+				.signup-button {
+					height: 44px;
+					font-size: 0.95rem;
+					margin-top: 0.25rem;
+				}
+			}
 		}
 	}
 
 	@media (min-width: 768px) {
-		.signup-container {
-			margin-top: -3.5rem;
+		.hero-section {
+			padding: 4rem 2rem 3rem;
+
+			.hero-logo {
+				width: 160px;
+				height: 160px;
+			}
+		}
+
+		.content-section {
+			padding: 3rem 2rem;
+			max-width: 600px;
+			margin: 0 auto;
+			width: 100%;
+
+			.form-container {
+				gap: 1.1rem;
+			}
 		}
 	}
 }

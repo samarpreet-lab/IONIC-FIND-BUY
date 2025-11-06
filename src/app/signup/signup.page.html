@@ -1,64 +1,70 @@
-<ion-content class="signup-page">
-  <section class="hero">
-    <ion-img
-      class="hero-logo"
-      src="assets/logo.png"
-      alt="Find &amp; Buy"
-    ></ion-img>
-  </section>
+<ion-content class="signup-page" [fullscreen]="true">
+  <div class="signup-wrapper">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <img src="assets/logo.png" alt="Find & Buy" class="hero-logo">
+      <h1 class="hero-title">Find&Buy</h1>
+    </div>
 
-  <div class="signup-container">
-    <ion-card class="signup-card">
-      <ion-card-header>
-        <ion-card-title>Sign up</ion-card-title>
-      </ion-card-header>
+    <!-- Content Section -->
+    <div class="content-section">
+      <div class="header-text">
+        <h2>Sign up</h2>
+      </div>
 
-      <ion-card-content>
-        <ion-list lines="none">
-          <ion-item class="input-item">
-            <ion-input placeholder="Full Name" type="text"></ion-input>
-          </ion-item>
+      <!-- Form Container -->
+      <div class="form-container">
+        <!-- Full Name Input -->
+        <div class="form-group">
+          <input type="text" class="form-input" placeholder="Full Name" [(ngModel)]="fullName">
+        </div>
 
-          <ion-item>
-            <ion-segment [(ngModel)]="selectedRole" name="role">
-              <ion-segment-button value="customer">
-                <ion-label>I'm a Customer</ion-label>
-              </ion-segment-button>
-              <ion-segment-button value="shop_owner">
-                <ion-label>I'm a Shop Owner</ion-label>
-              </ion-segment-button>
-            </ion-segment>
-          </ion-item>
+        <!-- Role Selection Segment -->
+        <div class="role-segment-wrapper">
+          <ion-segment [(ngModel)]="selectedRole" (ionChange)="onRoleChange($event)" class="role-segment">
+            <ion-segment-button value="customer" class="role-button">
+              <ion-label>I'M A CUSTOMER</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="shop_owner" class="role-button">
+              <ion-label>I'M A SHOP OWNER</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </div>
 
-          <ion-item class="input-item">
-            <ion-input placeholder="Enter Email ID/ Phone No." type="text"></ion-input>
-          </ion-item>
+        <!-- Email/Phone Input -->
+        <div class="form-group">
+          <input type="text" class="form-input" placeholder="Enter Email ID/ Phone No." [(ngModel)]="emailPhone">
+        </div>
 
-          <ion-item class="input-item">
-            <ion-input placeholder="Password" type="password"></ion-input>
-          </ion-item>
+        <!-- Password Input -->
+        <div class="form-group">
+          <input type="password" class="form-input" placeholder="Password" [(ngModel)]="password">
+        </div>
 
-          <ion-item class="input-item">
-            <ion-input placeholder="Repeat the Password" type="password"></ion-input>
-          </ion-item>
+        <!-- Repeat Password Input -->
+        <div class="form-group">
+          <input type="password" class="form-input" placeholder="Repeat the Password" [(ngModel)]="repeatPassword">
+        </div>
 
-          <ion-item class="terms-item">
-            <ion-checkbox slot="start"></ion-checkbox>
-            <ion-label>I Agree with Terms of Service and Privacy Policy</ion-label>
-          </ion-item>
-        </ion-list>
+        <!-- Terms Checkbox -->
+        <div class="terms-group">
+          <input type="checkbox" id="terms" [(ngModel)]="agreeTerms" class="terms-checkbox">
+          <label for="terms" class="terms-label">I Agree with Terms of Service and Privacy Policy</label>
+        </div>
 
+        <!-- Sign Up Button -->
         <ion-button expand="block" class="signup-button" (click)="onSignup()">
           Sign up
         </ion-button>
 
+        <!-- Login Link -->
         <p class="login-text">
-            <span class="login-label">Already have an account?</span>
-            <ion-button fill="clear" class="login-link" routerLink="/login" routerDirection="forward" size="small">
-             Log in
-           </ion-button>
+          <span class="login-label">Already have an account?</span>
+          <ion-button fill="clear" class="login-link" routerLink="/login" routerDirection="forward" size="small">
+            Log in
+          </ion-button>
         </p>
-      </ion-card-content>
-    </ion-card>
+      </div>
+    </div>
   </div>
 </ion-content>
