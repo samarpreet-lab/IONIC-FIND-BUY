@@ -1,22 +1,48 @@
-<ion-content class="login-page">
-  <section class="hero">
-    <ion-img
-      class="hero-logo"
-      src="assets/logo.png"
-      alt="Find &amp; Buy"
-    ></ion-img>
-  </section>
+<ion-content class="login-page" [fullscreen]="true">
+  <div class="login-wrapper">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <img src="assets/logo.png" alt="Find & Buy" class="hero-logo">
+      <h1 class="hero-title">Find&Buy</h1>
+    </div>
 
-  <div class="login-container">
-    <ion-card class="login-card">
-      <ion-card-header>
-        <ion-card-title>Log in</ion-card-title>
-      </ion-card-header>
+    <!-- Content Section -->
+    <div class="content-section">
+      <div class="header-text">
+        <h2>Choose your role</h2>
+        <p>Select an account type to continue</p>
+      </div>
 
-      <ion-card-content>
-        <ion-button (click)="login('customer')" expand="block" color="primary">Login as Customer</ion-button>
-        <ion-button (click)="login('shop_owner')" expand="block" color="secondary" class="ion-margin-top">Login as Shop Owner</ion-button>
-      </ion-card-content>
-    </ion-card>
+      <!-- Role Cards -->
+      <div class="cards-container">
+        <!-- Customer Card -->
+        <div class="role-card customer-card" (click)="login('customer')">
+          <div class="card-left">
+            <div class="card-icon customer-icon">
+              <ion-icon name="bag-handle-outline"></ion-icon>
+            </div>
+            <div class="card-text">
+              <h3>Customer</h3>
+              <p>Browse and buy from local shops</p>
+            </div>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="card-arrow"></ion-icon>
+        </div>
+
+        <!-- Shop Owner Card -->
+        <div class="role-card shop-owner-card" (click)="login('shop_owner')">
+          <div class="card-left">
+            <div class="card-icon shop-owner-icon">
+              <ion-icon name="storefront-outline"></ion-icon>
+            </div>
+            <div class="card-text">
+              <h3>Shop Owner</h3>
+              <p>Manage inventory and shop profile</p>
+            </div>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="card-arrow"></ion-icon>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>
