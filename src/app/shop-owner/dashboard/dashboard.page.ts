@@ -28,8 +28,19 @@ export class DashboardPage implements OnInit {
   ];
 
   public isHoursModalOpen = false;
-  public openingTime = '11:00';
-  public closingTime = '23:00';
+  public useShopTimezone = true;
+  public showNotesCheckbox = false;
+  public visitorNotes = '';
+
+  public weeklyHours = [
+    { name: 'Monday', opening: '09:00', closing: '18:00', closed: false },
+    { name: 'Tuesday', opening: '09:00', closing: '18:00', closed: false },
+    { name: 'Wednesday', opening: '09:00', closing: '18:00', closed: false },
+    { name: 'Thursday', opening: '09:00', closing: '18:00', closed: false },
+    { name: 'Friday', opening: '09:00', closing: '18:00', closed: false },
+    { name: 'Saturday', opening: '10:00', closing: '16:00', closed: false },
+    { name: 'Sunday', opening: '', closing: '', closed: true }
+  ];
 
   constructor(private router: Router) { }
 
@@ -53,9 +64,26 @@ export class DashboardPage implements OnInit {
   }
 
   public saveHours(): void {
-    console.log('Saving shop hours:', this.openingTime, this.closingTime);
+    console.log('Saving shop hours:', this.weeklyHours);
     // Here you would typically save to a service/backend
     this.isHoursModalOpen = false;
+  }
+
+  public toggleDayStatus(day: any): void {
+    day.closed = !day.closed;
+    if (day.closed) {
+      day.opening = '';
+      day.closing = '';
+    } else {
+      day.opening = '09:00';
+      day.closing = '18:00';
+    }
+  }
+
+  public formatTime(time: string): string {
+    if (!time) return '';
+    // Time format is already HH:mm, just return as is
+    return time;
   }
 
   public postDailySpecial(): void {

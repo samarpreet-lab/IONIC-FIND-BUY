@@ -118,51 +118,112 @@
 <!-- Update Hours Modal -->
 <ion-modal [isOpen]="isHoursModalOpen" (didDismiss)="closeHoursModal()">
   <ng-template>
-    <ion-header>
+    <ion-header class="modal-header">
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-button (click)="closeHoursModal()">Close</ion-button>
+          <ion-button (click)="closeHoursModal()">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </ion-button>
         </ion-buttons>
-        <ion-title>Update Shop Hours</ion-title>
+        <ion-title>Update Hours</ion-title>
+        <ion-buttons slot="end">
+          <span class="local-time-text">Local time</span>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
+
     <ion-content class="hours-modal-content">
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Shop Opening & Closing Times</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-list>
-            <!-- Opening Time -->
-            <ion-item>
-              <ion-label>Opening Time</ion-label>
-              <ion-input 
-                type="time" 
-                [(ngModel)]="openingTime"
-                placeholder="HH:mm">
-              </ion-input>
-            </ion-item>
+      <!-- Breadcrumb -->
+      <div class="modal-breadcrumb">Shop Profile • Availability</div>
 
-            <!-- Closing Time -->
-            <ion-item>
-              <ion-label>Closing Time</ion-label>
-              <ion-input 
-                type="time" 
-                [(ngModel)]="closingTime"
-                placeholder="HH:mm">
-              </ion-input>
-            </ion-item>
-          </ion-list>
+      <!-- General Section -->
+      <div class="modal-section general-section">
+        <h4 class="section-heading">General</h4>
+        
+        <div class="general-item">
+          <div class="item-left">
+            <ion-icon name="settings-outline"></ion-icon>
+            <span>Use shop timezone</span>
+          </div>
+          <ion-toggle [(ngModel)]="useShopTimezone" color="primary"></ion-toggle>
+        </div>
 
-          <!-- Save Button -->
-          <ion-button 
-            expand="block" 
-            color="primary"
-            (click)="saveHours()">
-            Save Hours
-          </ion-button>
-        </ion-card-content>
-      </ion-card>
+        <div class="general-item">
+          <div class="item-left">
+            <ion-icon name="calendar-outline"></ion-icon>
+            <span>Special dates and holidays</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weekly Hours Section -->
+      <div class="modal-section weekly-section">
+        <h4 class="section-heading">Weekly hours</h4>
+        
+        <div class="hours-list">
+          <div class="day-row" *ngFor="let day of weeklyHours">
+            <div class="day-name">{{ day.name }}</div>
+
+            <div class="time-row" *ngIf="!day.closed">
+              <div class="time-box">
+                <span class="time-value">{{ formatTime(day.opening) }}</span>
+                <ion-icon name="time-outline" class="time-icon"></ion-icon>
+              </div>
+
+              <span class="time-separator">to</span>
+
+              <div class="time-box">
+                <span class="time-value">{{ formatTime(day.closing) }}</span>
+                <ion-icon name="time-outline" class="time-icon"></ion-icon>
+              </div>
+            </div>
+
+            <div class="closed-row" *ngIf="day.closed">
+              <span class="closed-text">Closed</span>
+              <ion-button fill="clear" size="small" (click)="toggleDayStatus(day)" class="open-btn">
+                OPEN
+              </ion-button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes for Visitors Section -->
+      <div class="modal-section notes-section">
+        <h4 class="section-heading">Notes For Visitors</h4>
+
+        <div class="checkbox-item">
+          <ion-checkbox [(ngModel)]="showNotesCheckbox"></ion-checkbox>
+          <label>Add an optional note (e.g., Closed on public holidays)</label>
+        </div>
+
+        <ion-textarea 
+          *ngIf="showNotesCheckbox"
+          [(ngModel)]="visitorNotes"
+          placeholder="Enter note for customers..."
+          class="visitor-textarea">
+        </ion-textarea>
+      </div>
+
+      <!-- Info Message -->
+      <div class="info-banner">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <p>Changes shown in the Customer App and affect "Open now" status.</p>
+      </div>
     </ion-content>
+
+    <!-- Footer with Actions -->
+    <ion-footer class="modal-footer">
+      <div class="footer-button-group">
+        <ion-button fill="outline" expand="block" (click)="closeHoursModal()" class="discard-btn">
+          <ion-icon name="close-outline" slot="start"></ion-icon>
+          DISCARD
+        </ion-button>
+        <ion-button fill="solid" expand="block" color="primary" (click)="saveHours()" class="save-btn">
+          <ion-icon name="checkmark-outline" slot="start"></ion-icon>
+          SAVE HOURS
+        </ion-button>
+      </div>
+    </ion-footer>
   </ng-template>
 </ion-modal>
