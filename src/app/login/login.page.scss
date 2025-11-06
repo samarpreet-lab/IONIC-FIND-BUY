@@ -175,6 +175,51 @@
 				}
 			}
 		}
+
+		.signup-section {
+			margin-top: 2rem;
+			padding-top: 2rem;
+			border-top: 1px solid #e8e8ed;
+			display: flex;
+			justify-content: center;
+
+			.signup-text {
+				margin: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 0.4rem;
+				font-size: 0.9rem;
+				color: #5c5f69;
+				line-height: 1.4;
+				flex-wrap: wrap;
+
+				.signup-label {
+					font-weight: 500;
+				}
+
+				.signup-link {
+					--background: transparent;
+					--background-activated: transparent;
+					--padding-start: 0.25rem;
+					--padding-end: 0;
+					--color: #290a70;
+					--color-activated: #1c064c;
+					font-weight: 700;
+					text-decoration: none;
+					height: auto;
+					min-height: 0;
+					font-size: 0.95rem;
+					display: inline-flex;
+					text-transform: none;
+					padding: 0 !important;
+
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
 	}
 
 	@media (max-width: 480px) {
@@ -233,6 +278,19 @@
 
 					.card-arrow {
 						font-size: 1.3rem;
+					}
+				}
+			}
+
+			.signup-section {
+				margin-top: 1.5rem;
+				padding-top: 1.5rem;
+
+				.signup-text {
+					font-size: 0.85rem;
+
+					.signup-link {
+						font-size: 0.9rem;
 					}
 				}
 			}
