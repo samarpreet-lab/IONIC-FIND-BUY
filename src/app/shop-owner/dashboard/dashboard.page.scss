@@ -28,6 +28,18 @@
       --padding-start: 0;
       --padding-end: 0;
     }
+
+    .login-button {
+      --background: transparent;
+      --color: #290a70;
+      --padding-start: 0;
+      --padding-end: 0;
+      font-size: 1.3rem;
+
+      ion-icon {
+        font-size: 1.9rem;
+      }
+    }
   }
 
   .shop-card {

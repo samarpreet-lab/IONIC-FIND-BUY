@@ -56,4 +56,8 @@ export class DashboardPage implements OnInit {
     console.log('User wants to manage inventory');
   }
 
+  public goToLogin(): void {
+    this.router.navigate(['/login']);
+  }
+
 }
