@@ -11,9 +11,9 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ShopProfilePage implements OnInit {
-  public activeTab: string = 'basic';
+  activeTab: string = 'basic';
 
-  public weeklyHours = [
+  weeklyHours = [
     { name: 'Monday', opening: '09:00', closing: '18:00', closed: false },
     { name: 'Tuesday', opening: '09:00', closing: '18:00', closed: false },
     { name: 'Wednesday', opening: '09:00', closing: '18:00', closed: false },
@@ -23,7 +23,7 @@ export class ShopProfilePage implements OnInit {
     { name: 'Sunday', opening: '', closing: '', closed: true }
   ];
 
-  public shopProfile = {
+  shopProfile = {
     name: 'Desi Restaurant - Amritsar',
     type: 'Authentic Punjabi Cuisine',
     since: '2010',
@@ -51,23 +51,23 @@ export class ShopProfilePage implements OnInit {
   ngOnInit() {
   }
 
-  public setActiveTab(event: any): void {
+  setActiveTab(event: any): void {
     this.activeTab = event.detail.value;
   }
 
-  public saveProfile(): void {
+  saveProfile(): void {
     console.log('Saving profile:', this.shopProfile);
   }
 
-  public discardChanges(): void {
+  discardChanges(): void {
     console.log('Discarding changes');
   }
 
-  public saveChanges(): void {
+  saveChanges(): void {
     console.log(this.shopProfile);
   }
 
-  public formatTime(time: string): string {
+  formatTime(time: string): string {
     if (!time) return '';
     const [hours, minutes] = time.split(':');
     const hour = parseInt(hours);
@@ -76,7 +76,7 @@ export class ShopProfilePage implements OnInit {
     return `${displayHour}:${minutes} ${ampm}`;
   }
 
-  public getFirstOpeningHour(): string {
+  getFirstOpeningHour(): string {
     const firstOpen = this.weeklyHours.find(day => !day.closed);
     if (firstOpen) {
       return `${firstOpen.name}, ${this.formatTime(firstOpen.opening)} - ${this.formatTime(firstOpen.closing)}`;
@@ -84,7 +84,7 @@ export class ShopProfilePage implements OnInit {
     return this.shopProfile.hours;
   }
 
-  public getTodayHours(): string {
+  getTodayHours(): string {
     const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
     const todayData = this.weeklyHours.find(day => day.name === today);
     if (todayData) {
