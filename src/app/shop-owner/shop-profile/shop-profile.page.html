@@ -76,11 +76,26 @@
     <!-- Hours Input -->
     <div class="form-group">
       <label>Opening hours</label>
-      <select class="form-input" [(ngModel)]="shopProfile.hours">
-        <option>Mon-Sun, 7:00 AM - 6:00 PM</option>
-        <option>Mon-Fri, 9:00 AM - 5:00 PM</option>
-      </select>
-      <p class="helper-text">Keep hours accurate to help customers discover your shop.</p>
+      <div class="hours-display-card">
+        <div class="hours-row">
+          <span class="hours-label">Today</span>
+          <span class="hours-value">{{ getTodayHours() }}</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-label">Sample</span>
+          <span class="hours-value">{{ getFirstOpeningHour() }}</span>
+        </div>
+        <div class="hours-schedule">
+          <div class="schedule-item" *ngFor="let day of weeklyHours">
+            <span class="day-name">{{ day.name }}</span>
+            <span class="day-time" *ngIf="!day.closed">
+              {{ formatTime(day.opening) }} - {{ formatTime(day.closing) }}
+            </span>
+            <span class="day-closed" *ngIf="day.closed">Closed</span>
+          </div>
+        </div>
+      </div>
+      <p class="helper-text">Update hours from Dashboard</p>
     </div>
   </div>
 

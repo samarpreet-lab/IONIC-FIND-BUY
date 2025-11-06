@@ -229,6 +229,74 @@
         margin-top: 0.4rem;
         line-height: 1.4;
       }
+
+      .hours-display-card {
+        background: #f9f9fb;
+        border: 1px solid #e8dff8;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+
+        .hours-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.75rem 0;
+          border-bottom: 1px solid #e8e8ed;
+
+          &:last-of-type {
+            border-bottom: 2px solid #290a70;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+          }
+
+          .hours-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #8e9096;
+          }
+
+          .hours-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #290a70;
+          }
+        }
+
+        .hours-schedule {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 0.75rem;
+
+          .schedule-item {
+            display: flex;
+            flex-direction: column;
+            padding: 0.75rem;
+            background: #ffffff;
+            border: 1px solid #e8dff8;
+            border-radius: 6px;
+
+            .day-name {
+              font-size: 0.8rem;
+              font-weight: 600;
+              color: #1f1f1f;
+              margin-bottom: 0.25rem;
+            }
+
+            .day-time {
+              font-size: 0.75rem;
+              color: #290a70;
+              font-weight: 500;
+            }
+
+            .day-closed {
+              font-size: 0.75rem;
+              color: #ef4444;
+              font-weight: 500;
+            }
+          }
+        }
+      }
     }
 
     &.location-info {
