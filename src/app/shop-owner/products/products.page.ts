@@ -12,95 +12,258 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ProductsPage implements OnInit {
-  public searchTerm: string = '';
-  public categories = ['Bread', 'Pastries', 'Beverages'];
+  searchTerm: string = '';
+  // Categories for Amritsar Punjabi restaurant
+  categories = ['Breads', 'Main Curries', 'Street Food', 'Sweets', 'Beverages', 'Sides'];
 
-  public myProducts = [
+  // Comprehensive product list for Amritsar Punjabi restaurant with realistic INR prices
+  // Metric units included in product names; stock field removed from display
+  restaurantPhone = '+91-98762-34567'; // Amritsar contact number
+  restaurantName = 'Desi Darbar - Amritsar';
+
+  myProducts = [
     {
       id: 'p1',
-      name: 'Signature Sourdough',
-      category: 'Bread',
-      price: 5.99,
-      image: 'assets/images/sourdough.jpg',
+      name: 'Amritsari Kulcha (300g)',
+      category: 'Breads',
+      place: 'Amritsar',
+      price: 120.0,
+      image: 'assets/images/amritsari-kulcha.jpg',
       inStock: true,
-      stock: 6,
       hasSale: false
     },
     {
       id: 'p2',
-      name: 'Butter Croissant',
-      category: 'Pastry',
-      price: 3.25,
-      image: 'assets/images/croissant.jpg',
+      name: 'Makki di Roti with Butter (2 pcs, 200g)',
+      category: 'Breads',
+      place: 'Amritsar',
+      price: 80.0,
+      image: 'assets/images/makki-roti.jpg',
       inStock: true,
-      stock: 12,
       hasSale: false
     },
     {
       id: 'p3',
-      name: 'Chocolate Chip Cookie',
-      category: 'Pastry',
-      price: 2.50,
-      image: 'assets/images/cookie.jpg',
+      name: 'Sarson da Saag (500ml)',
+      category: 'Main Curries',
+      place: 'Amritsar',
+      price: 180.0,
+      image: 'assets/images/sarson-saag.jpg',
       inStock: true,
-      stock: 8,
-      hasSale: true
+      hasSale: false
     },
     {
       id: 'p4',
-      name: 'House Latte',
-      category: 'Beverage',
-      price: 4.00,
-      image: 'assets/images/latte.jpg',
-      inStock: false,
-      stock: 0,
+      name: 'Punjabi Chole Bhature (400g)',
+      category: 'Main Curries',
+      place: 'Amritsar',
+      price: 150.0,
+      image: 'assets/images/chole-bhature.jpg',
+      inStock: true,
+      hasSale: true
+    },
+    {
+      id: 'p5',
+      name: 'Paneer Tikka Masala (350g)',
+      category: 'Main Curries',
+      place: 'Amritsar',
+      price: 220.0,
+      image: 'assets/images/paneer-tikka-masala.jpg',
+      inStock: true,
+      hasSale: false
+    },
+    {
+      id: 'p6',
+      name: 'Butter Chicken (400g)',
+      category: 'Main Curries',
+      place: 'Amritsar',
+      price: 240.0,
+      image: 'assets/images/butter-chicken.jpg',
+      inStock: true,
+      hasSale: false
+    },
+    {
+      id: 'p7',
+      name: 'Amritsari Fish Tawa (300g)',
+      category: 'Street Food',
+      place: 'Amritsar',
+      price: 280.0,
+      image: 'assets/images/amritsari-fish.jpg',
+      inStock: true,
+      hasSale: false
+    },
+    {
+      id: 'p8',
+      name: 'Samosa with Chutney (4 pcs, 250g)',
+      category: 'Street Food',
+      place: 'Amritsar',
+      price: 50.0,
+      image: 'assets/images/samosa.jpg',
+      inStock: true,
+      hasSale: true
+    },
+    {
+      id: 'p9',
+      name: 'Gujhiya (150g)',
+      category: 'Sweets',
+      place: 'Amritsar',
+      price: 200.0,
+      image: 'assets/images/gujhiya.jpg',
+      inStock: true,
+      hasSale: false
+    },
+    {
+      id: 'p10',
+      name: 'Jalebi and Fafda (300g)',
+      category: 'Sweets',
+      place: 'Amritsar',
+      price: 90.0,
+      image: 'assets/images/jalebi-fafda.jpg',
+      inStock: true,
+      hasSale: false
+    },
+    {
+      id: 'p11',
+      name: 'Kheer (400ml)',
+      category: 'Sweets',
+      place: 'Amritsar',
+      price: 110.0,
+      image: 'assets/images/kheer.jpg',
+      inStock: true,
+      hasSale: false
+    },
+    {
+      id: 'p12',
+      name: 'Punjabi Lassi (500ml)',
+      category: 'Beverages',
+      place: 'Amritsar',
+      price: 70.0,
+      image: 'assets/images/punjabi-lassi.jpg',
+      inStock: true,
+      hasSale: true
+    },
+    {
+      id: 'p13',
+      name: 'Masala Lassi (500ml)',
+      category: 'Beverages',
+      place: 'Amritsar',
+      price: 75.0,
+      image: 'assets/images/masala-lassi.jpg',
+      inStock: true,
+      hasSale: false
+    },
+    {
+      id: 'p14',
+      name: 'Amritsari Kulfi (80g)',
+      category: 'Beverages',
+      place: 'Amritsar',
+      price: 60.0,
+      image: 'assets/images/kulfi.jpg',
+      inStock: true,
+      hasSale: false
+    },
+    {
+      id: 'p15',
+      name: 'Raita (300ml)',
+      category: 'Sides',
+      place: 'Amritsar',
+      price: 40.0,
+      image: 'assets/images/raita.jpg',
+      inStock: true,
+      hasSale: false
+    },
+    {
+      id: 'p16',
+      name: 'Punjabi Pickle (250g)',
+      category: 'Sides',
+      place: 'Amritsar',
+      price: 120.0,
+      image: 'assets/images/pickle.jpg',
+      inStock: true,
+      hasSale: false
+    },
+    {
+      id: 'p17',
+      name: 'Ghee (500ml)',
+      category: 'Sides',
+      place: 'Amritsar',
+      price: 450.0,
+      image: 'assets/images/ghee.jpg',
+      inStock: true,
+      hasSale: false
+    },
+    {
+      id: 'p18',
+      name: 'Langar Halwa Puri (200g)',
+      category: 'Street Food',
+      place: 'Amritsar',
+      price: 130.0,
+      image: 'assets/images/langar-halwa.jpg',
+      inStock: true,
       hasSale: false
     }
   ];
 
-  public showSearch: boolean = false;
+  showSearch: boolean = false;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  public addProduct(): void {
+  addProduct(): void {
     this.router.navigate(['/shop-owner/add-product']);
   }
 
-  public editProduct(productId: string): void {
+  editProduct(productId: string): void {
     console.log('Editing product:', productId);
     this.router.navigate(['/shop-owner/edit-product', productId]);
   }
 
-  public hideProduct(productId: string): void {
+  hideProduct(productId: string): void {
     console.log('Hiding product:', productId);
   }
 
-  public archiveProduct(productId: string): void {
+  archiveProduct(productId: string): void {
     console.log('Archiving product:', productId);
   }
 
-  public toggleStock(product: any): void {
+  toggleStock(product: any): void {
     console.log('Toggling stock for:', product.name);
   }
 
-  public onSearchClicked(): void {
-    // Toggle a simple inline search state for now – can be expanded to open a modal
+  onSearchClicked(): void {
+    // Toggle search box visibility
     this.showSearch = !this.showSearch;
-    console.log('Search clicked, showSearch=', this.showSearch);
+    if (!this.showSearch) {
+      // Clear search when closing
+      this.searchTerm = '';
+    }
   }
 
-  public onSearchChange(): void {
+  onSearchChange(): void {
     console.log('Searching for:', this.searchTerm);
   }
 
-  public getActiveItemsCount(): number {
-    return this.myProducts.filter(p => p.inStock).length;
+  // Filter products based on search term
+  getFilteredProducts(): any[] {
+    if (!this.searchTerm.trim()) {
+      return this.myProducts;
+    }
+    
+    const term = this.searchTerm.toLowerCase();
+    return this.myProducts.filter(product =>
+      product.name.toLowerCase().includes(term) ||
+      product.category.toLowerCase().includes(term) ||
+      product.place.toLowerCase().includes(term)
+    );
   }
 
-  public getCategoriesCount(): number {
+  getActiveItemsCount(): number {
+    return this.getFilteredProducts().filter(p => p.inStock).length;
+  }
+
+  getCategoriesCount(): number {
     return this.categories.length;
   }
 }

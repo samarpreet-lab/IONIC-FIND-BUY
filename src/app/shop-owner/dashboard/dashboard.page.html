@@ -18,7 +18,7 @@
         </div>
         <div class="shop-info">
           <h2>Desi Darbar - Amritsar</h2>
-          <p>Open • 11:00 AM - 11:00 PM</p>
+          <p>Open • 9:00 AM - 10:00 PM</p>
         </div>
         <ion-button fill="clear" size="small" (click)="editShop()">
           <ion-icon name="pencil-outline"></ion-icon>
@@ -145,7 +145,7 @@
             <ion-icon name="settings-outline"></ion-icon>
             <span>Use shop timezone</span>
           </div>
-          <ion-toggle [(ngModel)]="useShopTimezone" color="primary"></ion-toggle>
+          <ion-toggle [(ngModel)]="useShopTimezone" ></ion-toggle>
         </div>
 
         <div class="general-item">
@@ -219,7 +219,7 @@
           <ion-icon name="close-outline" slot="start"></ion-icon>
           DISCARD
         </ion-button>
-        <ion-button fill="solid" expand="block" color="primary" (click)="saveHours()" class="save-btn">
+        <ion-button fill="solid" expand="block"  (click)="saveHours()" class="save-btn">
           <ion-icon name="checkmark-outline" slot="start"></ion-icon>
           SAVE HOURS
         </ion-button>
