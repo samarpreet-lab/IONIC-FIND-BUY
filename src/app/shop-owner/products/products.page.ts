@@ -28,7 +28,7 @@ export class ProductsPage implements OnInit {
       category: 'Breads',
       place: 'Amritsar',
       price: 120.0,
-      image: 'assets/images/amritsari-kulcha.jpg',
+      image: 'assets/amritsari-kulcha.avif',
       inStock: true,
       hasSale: false
     },
@@ -38,7 +38,7 @@ export class ProductsPage implements OnInit {
       category: 'Breads',
       place: 'Amritsar',
       price: 80.0,
-      image: 'assets/images/makki-roti.jpg',
+      image: 'assets/makki-roti.jpeg',
       inStock: true,
       hasSale: false
     },
@@ -48,7 +48,7 @@ export class ProductsPage implements OnInit {
       category: 'Main Curries',
       place: 'Amritsar',
       price: 180.0,
-      image: 'assets/images/sarson-saag.jpg',
+      image: 'assets/sarson-saag.jpg',
       inStock: true,
       hasSale: false
     },
@@ -58,7 +58,7 @@ export class ProductsPage implements OnInit {
       category: 'Main Curries',
       place: 'Amritsar',
       price: 150.0,
-      image: 'assets/images/chole-bhature.jpg',
+      image: 'assets/chole-bhature.jpeg',
       inStock: true,
       hasSale: true
     },
@@ -68,7 +68,7 @@ export class ProductsPage implements OnInit {
       category: 'Main Curries',
       place: 'Amritsar',
       price: 220.0,
-      image: 'assets/images/paneer-tikka-masala.jpg',
+      image: 'assets/paneer-tikka-masala.webp',
       inStock: true,
       hasSale: false
     },
@@ -78,7 +78,7 @@ export class ProductsPage implements OnInit {
       category: 'Main Curries',
       place: 'Amritsar',
       price: 240.0,
-      image: 'assets/images/butter-chicken.jpg',
+      image: 'assets/butter-chicken.jpeg',
       inStock: true,
       hasSale: false
     },
@@ -88,7 +88,7 @@ export class ProductsPage implements OnInit {
       category: 'Street Food',
       place: 'Amritsar',
       price: 280.0,
-      image: 'assets/images/amritsari-fish.jpg',
+      image: 'assets/amritsari-fish.jpeg',
       inStock: true,
       hasSale: false
     },
@@ -98,7 +98,7 @@ export class ProductsPage implements OnInit {
       category: 'Street Food',
       place: 'Amritsar',
       price: 50.0,
-      image: 'assets/images/samosa.jpg',
+      image: 'assets/samosa.avif',
       inStock: true,
       hasSale: true
     },
@@ -108,7 +108,7 @@ export class ProductsPage implements OnInit {
       category: 'Sweets',
       place: 'Amritsar',
       price: 200.0,
-      image: 'assets/images/gujhiya.jpg',
+      image: 'assets/gujhiya.webp',
       inStock: true,
       hasSale: false
     },
@@ -118,7 +118,7 @@ export class ProductsPage implements OnInit {
       category: 'Sweets',
       place: 'Amritsar',
       price: 90.0,
-      image: 'assets/images/jalebi-fafda.jpg',
+      image: 'assets/jalebi-fafda.jpeg',
       inStock: true,
       hasSale: false
     },
@@ -128,7 +128,7 @@ export class ProductsPage implements OnInit {
       category: 'Sweets',
       place: 'Amritsar',
       price: 110.0,
-      image: 'assets/images/kheer.jpg',
+      image: 'assets/kheer.jpeg',
       inStock: true,
       hasSale: false
     },
@@ -138,7 +138,7 @@ export class ProductsPage implements OnInit {
       category: 'Beverages',
       place: 'Amritsar',
       price: 70.0,
-      image: 'assets/images/punjabi-lassi.jpg',
+      image: 'assets/punjabi-lassi.avif',
       inStock: true,
       hasSale: true
     },
@@ -148,7 +148,7 @@ export class ProductsPage implements OnInit {
       category: 'Beverages',
       place: 'Amritsar',
       price: 75.0,
-      image: 'assets/images/masala-lassi.jpg',
+      image: 'assets/masala-lassi.jpg',
       inStock: true,
       hasSale: false
     },
@@ -158,7 +158,7 @@ export class ProductsPage implements OnInit {
       category: 'Beverages',
       place: 'Amritsar',
       price: 60.0,
-      image: 'assets/images/kulfi.jpg',
+      image: 'assets/kulfi.avif',
       inStock: true,
       hasSale: false
     },
@@ -168,7 +168,7 @@ export class ProductsPage implements OnInit {
       category: 'Sides',
       place: 'Amritsar',
       price: 40.0,
-      image: 'assets/images/raita.jpg',
+      image: 'assets/raita.jpeg',
       inStock: true,
       hasSale: false
     },
@@ -178,7 +178,7 @@ export class ProductsPage implements OnInit {
       category: 'Sides',
       place: 'Amritsar',
       price: 120.0,
-      image: 'assets/images/pickle.jpg',
+      image: 'assets/pickle.jpeg',
       inStock: true,
       hasSale: false
     },
@@ -188,7 +188,7 @@ export class ProductsPage implements OnInit {
       category: 'Sides',
       place: 'Amritsar',
       price: 450.0,
-      image: 'assets/images/ghee.jpg',
+      image: 'assets/ghee.jpeg',
       inStock: true,
       hasSale: false
     },
@@ -198,7 +198,7 @@ export class ProductsPage implements OnInit {
       category: 'Street Food',
       place: 'Amritsar',
       price: 130.0,
-      image: 'assets/images/langar-halwa.jpg',
+      image: 'assets/langar-halwa.jpg',
       inStock: true,
       hasSale: false
     }

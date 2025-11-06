@@ -24,7 +24,7 @@ export class ShopProfilePage implements OnInit {
   ];
 
   public shopProfile = {
-    name: 'Desi Darbar - Amritsar',
+    name: 'Desi Restaurant - Amritsar',
     type: 'Authentic Punjabi Cuisine',
     since: '2010',
     avatar: 'assets/avatar.avif',
