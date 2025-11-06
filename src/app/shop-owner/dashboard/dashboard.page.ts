@@ -14,16 +14,16 @@ import { IonicModule } from '@ionic/angular';
 export class DashboardPage implements OnInit {
   public recentReviews = [
     {
-      name: 'Alex P.',
+      name: 'Priya K.',
       avatar: 'https://via.placeholder.com/40',
       rating: 5,
-      text: 'Best croissants in town. Friendly staff and cozy atmosphere!'
+      text: 'Best Amritsari Kulcha in Amritsar! Authentic taste and freshly made.'
     },
     {
-      name: 'Jamie L.',
+      name: 'Harpreet S.',
       avatar: 'https://via.placeholder.com/40',
       rating: 5,
-      text: 'Loved the sourdough. Extend weekend hours if possible!'
+      text: 'Amazing Sarson da Saag & Makki di Roti. Just like homemade! Highly recommended.'
     }
   ];
 
@@ -49,7 +49,7 @@ export class DashboardPage implements OnInit {
   }
 
   public editLocation(): void {
-    console.log('Opening edit location modal');
+    this.router.navigate(['/shop-owner/shop-profile']);
   }
 
   public manageInventory(): void {
