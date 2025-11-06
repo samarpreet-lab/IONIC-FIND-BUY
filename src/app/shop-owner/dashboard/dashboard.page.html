@@ -13,12 +13,12 @@
       <div class="shop-card-content">
         <div class="shop-avatar">
           <ion-avatar>
-            <span>SB</span>
+            <span>DDA</span>
           </ion-avatar>
         </div>
         <div class="shop-info">
-          <h2>Sunrise Bakery</h2>
-          <p>Open • 7:00 AM - 4:00 PM</p>
+          <h2>Desi Darbar - Amritsar</h2>
+          <p>Open • 11:00 AM - 11:00 PM</p>
         </div>
         <ion-button fill="clear" size="small" (click)="editShop()">
           <ion-icon name="pencil-outline"></ion-icon>
@@ -30,30 +30,30 @@
       <div class="shop-stats">
         <ion-card class="stat-card">
           <div class="stat-content">
-            <div class="stat-value">128</div>
+            <div class="stat-value">456</div>
             <div class="stat-label">Today's nearby views</div>
-            <div class="stat-change">+12% vs yesterday</div>
+            <div class="stat-change">+18% vs yesterday</div>
           </div>
         </ion-card>
         <ion-card class="stat-card">
           <div class="stat-content">
-            <div class="stat-value">24</div>
+            <div class="stat-value">42</div>
             <div class="stat-label">Favorites added</div>
-            <div class="stat-detail">Top item: Croissant</div>
+            <div class="stat-detail">Top item: Amritsari Kulcha</div>
           </div>
         </ion-card>
         <ion-card class="stat-card">
           <div class="stat-content">
-            <div class="stat-value">0.8 mi avg</div>
+            <div class="stat-value">1.2 Km avg</div>
             <div class="stat-label">discovery</div>
             <div class="stat-detail">Local reach this week</div>
           </div>
         </ion-card>
         <ion-card class="stat-card">
           <div class="stat-content">
-            <div class="stat-value">4.2k</div>
+            <div class="stat-value">8.5k</div>
             <div class="stat-label">impressions</div>
-            <div class="stat-detail">Reached + home</div>
+            <div class="stat-detail">Reached this month</div>
           </div>
         </ion-card>
       </div>
@@ -91,10 +91,6 @@
         <ion-icon slot="start" name="time-outline"></ion-icon>
         Update hours
       </ion-button>
-      <ion-button fill="outline" expand="block" (click)="postDailySpecial()">
-        <ion-icon slot="start" name="megaphone-outline"></ion-icon>
-        Post daily special
-      </ion-button>
       <ion-button fill="outline" expand="block" (click)="editLocation()">
         <ion-icon slot="start" name="location-outline"></ion-icon>
         Edit location
@@ -114,10 +110,59 @@
         <ion-label>Next peak window</ion-label>
         <ion-text slot="end">8:30 - 10:30 AM</ion-text>
       </ion-item>
-      <ion-item>
-        <ion-label>Items sold out</ion-label>
-        <ion-badge slot="end" color="danger">2</ion-badge>
-      </ion-item>
+      
     </ion-list>
   </div>
 </ion-content>
+
+<!-- Update Hours Modal -->
+<ion-modal [isOpen]="isHoursModalOpen" (didDismiss)="closeHoursModal()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="closeHoursModal()">Close</ion-button>
+        </ion-buttons>
+        <ion-title>Update Shop Hours</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="hours-modal-content">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Shop Opening & Closing Times</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <!-- Opening Time -->
+            <ion-item>
+              <ion-label>Opening Time</ion-label>
+              <ion-input 
+                type="time" 
+                [(ngModel)]="openingTime"
+                placeholder="HH:mm">
+              </ion-input>
+            </ion-item>
+
+            <!-- Closing Time -->
+            <ion-item>
+              <ion-label>Closing Time</ion-label>
+              <ion-input 
+                type="time" 
+                [(ngModel)]="closingTime"
+                placeholder="HH:mm">
+              </ion-input>
+            </ion-item>
+          </ion-list>
+
+          <!-- Save Button -->
+          <ion-button 
+            expand="block" 
+            color="primary"
+            (click)="saveHours()">
+            Save Hours
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-content>
+  </ng-template>
+</ion-modal>

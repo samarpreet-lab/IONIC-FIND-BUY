@@ -27,6 +27,10 @@ export class DashboardPage implements OnInit {
     }
   ];
 
+  public isHoursModalOpen = false;
+  public openingTime = '11:00';
+  public closingTime = '23:00';
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -41,7 +45,17 @@ export class DashboardPage implements OnInit {
   }
 
   public updateHours(): void {
-    console.log('Opening update hours modal');
+    this.isHoursModalOpen = true;
+  }
+
+  public closeHoursModal(): void {
+    this.isHoursModalOpen = false;
+  }
+
+  public saveHours(): void {
+    console.log('Saving shop hours:', this.openingTime, this.closingTime);
+    // Here you would typically save to a service/backend
+    this.isHoursModalOpen = false;
   }
 
   public postDailySpecial(): void {
