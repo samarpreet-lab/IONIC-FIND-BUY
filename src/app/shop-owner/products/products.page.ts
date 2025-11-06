@@ -58,6 +58,8 @@ export class ProductsPage implements OnInit {
     }
   ];
 
+  public showSearch: boolean = false;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -82,6 +84,12 @@ export class ProductsPage implements OnInit {
 
   public toggleStock(product: any): void {
     console.log('Toggling stock for:', product.name);
+  }
+
+  public onSearchClicked(): void {
+    // Toggle a simple inline search state for now – can be expanded to open a modal
+    this.showSearch = !this.showSearch;
+    console.log('Search clicked, showSearch=', this.showSearch);
   }
 
   public onSearchChange(): void {

@@ -6,14 +6,15 @@
         <ion-menu-button></ion-menu-button>
         <span class="products-label">Products</span>
       </div>
-      <div class="search-container">
-        <ion-icon name="search"></ion-icon>
-        <input type="text" placeholder="Search products" [(ngModel)]="searchTerm">
+      <div class="header-right">
+        <ion-button fill="clear" size="small" class="search-button" (click)="onSearchClicked()">
+          <ion-icon name="search-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="solid" class="add-btn" (click)="addProduct()">
+          <ion-icon slot="start" name="add"></ion-icon>
+          Add
+        </ion-button>
       </div>
-      <ion-button fill="solid" class="add-btn" (click)="addProduct()">
-        <ion-icon slot="start" name="add"></ion-icon>
-        Add
-      </ion-button>
     </div>
 
     <!-- Inventory Overview Section -->
