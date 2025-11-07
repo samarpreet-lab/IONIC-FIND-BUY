@@ -12,6 +12,8 @@ import { IonicModule } from '@ionic/angular';
 })
 export class ShopProfilePage implements OnInit {
   activeTab: string = 'basic';
+  isSuccessModalOpen = false;
+  successMessage = 'Profile updated successfully';
 
   weeklyHours = [
     { name: 'Monday', opening: '09:00', closing: '18:00', closed: false },
@@ -57,6 +59,15 @@ export class ShopProfilePage implements OnInit {
 
   saveProfile(): void {
     console.log('Saving profile:', this.shopProfile);
+    this.isSuccessModalOpen = true;
+    // Auto-close modal after 2.5 seconds
+    setTimeout(() => {
+      this.isSuccessModalOpen = false;
+    }, 2500);
+  }
+
+  closeSuccessModal(): void {
+    this.isSuccessModalOpen = false;
   }
 
   discardChanges(): void {

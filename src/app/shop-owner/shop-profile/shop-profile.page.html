@@ -214,3 +214,18 @@
     </ion-button>
   </div>
 </ion-content>
+
+<!-- Success Modal -->
+<ion-modal [isOpen]="isSuccessModalOpen" (didDismiss)="closeSuccessModal()" class="success-modal" backdropDismiss="true">
+  <ng-template>
+    <div class="success-modal-inner">
+      <div class="success-icon-wrapper">
+        <div class="success-icon">
+          <ion-icon name="checkmark-circle"></ion-icon>
+        </div>
+      </div>
+      <h2 class="success-title">{{ successMessage }}</h2>
+      <p class="success-subtitle">Your shop profile changes have been saved successfully</p>
+    </div>
+  </ng-template>
+</ion-modal>
