@@ -2,6 +2,7 @@
 	--background: #f6f6f8;
 	--padding: 0;
 	--margin: 0;
+	--border-top: none;
 
 	.login-wrapper {
 		display: flex;
@@ -12,26 +13,28 @@
 
 	.hero-section {
 		background: linear-gradient(135deg, #290a70 0%, #3d1d9c 100%);
-		padding: 3rem 1.5rem 2.5rem;
+		padding: 3.5rem 1.5rem 3rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		border-bottom-left-radius: 32px;
 		border-bottom-right-radius: 32px;
+		border-top: none;
 		box-shadow: 0 8px 24px rgba(41, 10, 112, 0.15);
 		position: relative;
+		overflow: hidden;
 
 		.hero-logo {
-			width: 140px;
-			height: 140px;
+			width: 200px;
+			height: 200px;
 			object-fit: contain;
-			margin-bottom: 0.75rem;
+			margin-bottom: 1rem;
 		}
 
 		.hero-title {
 			color: #ffffff;
-			font-size: 1.3rem;
+			font-size: 2rem;
 			font-weight: 700;
 			margin: 0;
 			letter-spacing: 0.5px;
@@ -224,11 +227,11 @@
 
 	@media (max-width: 480px) {
 		.hero-section {
-			padding: 2.5rem 1rem 2rem;
+			padding: 1rem 2rem;
 
 			.hero-logo {
-				width: 120px;
-				height: 120px;
+				width: 200px;
+				height: 200px;
 			}
 
 			.hero-title {
