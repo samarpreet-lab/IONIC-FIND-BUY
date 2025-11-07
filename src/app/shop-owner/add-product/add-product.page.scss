@@ -195,6 +195,126 @@
 				}
 			}
 
+			.images-preview {
+				margin-bottom: 1.5rem;
+
+				.preview-grid {
+					display: grid;
+					grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+					gap: 1rem;
+					margin-bottom: 1rem;
+
+					.image-card {
+						position: relative;
+						border-radius: 10px;
+						overflow: hidden;
+						background: #f9f9fb;
+						border: 1px solid #e8e8ed;
+						aspect-ratio: 1;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+						transition: all 0.3s ease;
+
+						.preview-image {
+							width: 100%;
+							height: 100%;
+							object-fit: cover;
+						}
+
+						.remove-btn {
+							position: absolute;
+							top: 4px;
+							right: 4px;
+							background: rgba(255, 255, 255, 0.95);
+							border: none;
+							border-radius: 50%;
+							width: 28px;
+							height: 28px;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							cursor: pointer;
+							opacity: 0;
+							transition: all 0.2s ease;
+							padding: 0;
+
+							ion-icon {
+								font-size: 1.2rem;
+								color: #ef4444;
+							}
+
+							&:hover {
+								background: #ffffff;
+								box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+							}
+						}
+
+						&:hover {
+							box-shadow: 0 4px 12px rgba(41, 10, 112, 0.15);
+
+							.remove-btn {
+								opacity: 1;
+							}
+						}
+					}
+				}
+			}
+
+			.media-upload-options {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1rem;
+				margin-bottom: 1rem;
+
+				.media-option {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					gap: 0.5rem;
+					padding: 1.25rem 1rem;
+					border: 2px solid #290a70;
+					background: #ffffff;
+					border-radius: 10px;
+					cursor: pointer;
+					transition: all 0.3s ease;
+					font-size: 0.9rem;
+					font-weight: 600;
+					color: #290a70;
+					min-height: 90px;
+
+					ion-icon {
+						font-size: 1.8rem;
+						color: #290a70;
+					}
+
+					span {
+						font-size: 0.85rem;
+						line-height: 1.2;
+					}
+
+					&:active {
+						transform: scale(0.95);
+					}
+
+					&.camera-btn {
+						&:hover {
+							background: #f0e6ff;
+							box-shadow: 0 4px 12px rgba(41, 10, 112, 0.15);
+						}
+					}
+
+					&.gallery-btn {
+						&:hover {
+							background: #f0e6ff;
+							box-shadow: 0 4px 12px rgba(41, 10, 112, 0.15);
+						}
+					}
+				}
+			}
+
 			.media-hint {
 				margin-top: 0.75rem;
 				font-size: 0.8rem;

@@ -39,9 +39,9 @@ export class ShopProfilePage implements OnInit {
     latitude: '31.6340',
     longitude: '74.8711',
     photos: [
-      'assets/images/shop-1.jpg',
-      'assets/images/shop-2.jpg',
-      'assets/images/shop-3.jpg'
+      'assets/image1.jpg',
+      'assets/image2.jpg',
+      'assets/image3.jpg'
     ],
     visibility: 'Public'
   };

@@ -66,11 +66,30 @@
     <div class="form-section">
       <h2 class="section-title">Media</h2>
       
-      <div class="media-upload">
-        <ion-icon name="image-outline"></ion-icon>
-        <span>Add photos</span>
+      <!-- Uploaded Images Preview -->
+      <div class="images-preview" *ngIf="uploadedImages.length > 0">
+        <div class="preview-grid">
+          <div class="image-card" *ngFor="let image of uploadedImages">
+            <img [src]="image.src" class="preview-image" [alt]="'Product image ' + image.id">
+            <button class="remove-btn" (click)="removeImage(image.id)">
+              <ion-icon name="close-circle"></ion-icon>
+            </button>
+          </div>
+        </div>
       </div>
-      <p class="media-hint">Tip: Use clear, well-lit images of the product in-store.</p>
+
+      <!-- Media Upload Options -->
+      <div class="media-upload-options">
+        <button class="media-option camera-btn" (click)="takePhoto()">
+          <ion-icon name="camera-outline"></ion-icon>
+          <span>Take Photo</span>
+        </button>
+        <button class="media-option gallery-btn" (click)="selectFromGallery()">
+          <ion-icon name="images-outline"></ion-icon>
+          <span>Choose from Gallery</span>
+        </button>
+      </div>
+      <p class="media-hint">Tip: Use clear, well-lit images of the product in-store. Max 5 images.</p>
     </div>
 
     <!-- Inventory Section -->
