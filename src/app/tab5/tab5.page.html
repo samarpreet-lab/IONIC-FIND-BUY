@@ -1,13 +1,4 @@
 <div *ngIf="(userRole$ | async) as role">
-  <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-title>
-        <span *ngIf="role === 'customer'">My Profile</span>
-        <span *ngIf="role === 'shop_owner'">My Account</span>
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-content [fullscreen]="true" class="profile-page">
     <div class="title-block">
       <h1>
