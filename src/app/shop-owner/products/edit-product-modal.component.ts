@@ -89,12 +89,20 @@ import { IonicModule, ModalController } from '@ionic/angular';
 
       <!-- Modal Footer -->
       <div class="modal-footer">
-        <ion-button fill="outline" expand="block" (click)="dismiss()">
-          Cancel
-        </ion-button>
-        <ion-button fill="solid" expand="block" style="--background:#290a70;" (click)="save()">
-          Save Changes
-        </ion-button>
+        <div class="footer-delete-section">
+          <ion-button fill="outline" expand="block" style="color:#290a70;--border-color:#290a70;">
+            <ion-icon name="trash-outline" slot="start"></ion-icon>
+            DELETE PRODUCT
+          </ion-button>
+        </div>
+        <div class="footer-buttons">
+          <ion-button fill="outline" expand="block" style="color:#290a70;--border-color:#290a70;" (click)="dismiss()">
+            CANCEL
+          </ion-button>
+          <ion-button fill="solid" expand="block" style="--background:#290a70;">
+            SAVE CHANGES
+          </ion-button>
+        </div>
       </div>
     </div>
   `,
@@ -102,7 +110,8 @@ import { IonicModule, ModalController } from '@ionic/angular';
     .edit-product-modal-container {
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      height: 100%;
+      max-height: 100vh;
       background: var(--ion-background-color, #ffffff);
     }
 
@@ -110,14 +119,15 @@ import { IonicModule, ModalController } from '@ionic/angular';
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px;
+      padding: 12px 16px;
       border-bottom: 1px solid var(--ion-border-color, #e8e8e8);
       background: var(--ion-color-light, #f9f9f9);
+      flex-shrink: 0;
     }
 
     .modal-header h2 {
       margin: 0;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
       color: var(--ion-text-color, #333);
     }
@@ -131,16 +141,17 @@ import { IonicModule, ModalController } from '@ionic/angular';
       flex: 1;
       overflow-y: auto;
       padding: 16px;
+      min-height: 0;
     }
 
     .image-section {
-      margin-bottom: 24px;
+      margin-bottom: 16px;
       text-align: center;
     }
 
     .image-preview {
       width: 100%;
-      height: 200px;
+      height: 150px;
       border-radius: 8px;
       overflow: hidden;
       margin-bottom: 12px;
@@ -157,7 +168,7 @@ import { IonicModule, ModalController } from '@ionic/angular';
     }
 
     .form-section {
-      margin-bottom: 20px;
+      margin-bottom: 12px;
     }
 
     .section-title {
@@ -207,14 +218,46 @@ import { IonicModule, ModalController } from '@ionic/angular';
 
     .modal-footer {
       display: flex;
-      gap: 12px;
+      flex-direction: column;
+      gap: 0;
       padding: 16px;
       border-top: 1px solid var(--ion-border-color, #e8e8e8);
       background: var(--ion-color-light, #f9f9f9);
+      flex-shrink: 0;
     }
 
-    .modal-footer ion-button {
+    .footer-delete-section {
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--ion-border-color, #e8e8e8);
+      padding-bottom: 12px;
+    }
+
+    .footer-delete-section ion-button {
       margin: 0;
+      --padding-start: 12px;
+      --padding-end: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-buttons ion-button {
+      margin: 0;
+      flex: 1;
+      min-width: 120px;
+      --padding-start: 12px;
+      --padding-end: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .purple-toggle {
@@ -242,12 +285,5 @@ export class EditProductModalComponent {
 
   dismiss() {
     this.modalController.dismiss();
-  }
-
-  save() {
-    this.modalController.dismiss({
-      updated: true,
-      product: this.editedProduct
-    });
   }
 }
