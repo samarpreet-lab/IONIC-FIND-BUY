@@ -130,6 +130,20 @@
 						background: #ffffff;
 						box-shadow: 0 0 0 3px rgba(41, 10, 112, 0.08);
 					}
+
+					&.ng-invalid.ng-touched,
+					&.ng-invalid.ng-dirty {
+						border-color: var(--ion-color-danger);
+					}
+				}
+
+				.validation-error {
+					color: var(--ion-color-danger);
+					font-size: 0.8rem;
+					margin-top: 0.35rem;
+					display: flex;
+					flex-direction: column;
+					gap: 0.2rem;
 				}
 
 				.form-textarea {
