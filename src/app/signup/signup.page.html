@@ -13,15 +13,23 @@
       </div>
 
       <!-- Form Container -->
-      <div class="form-container">
+      <form class="form-container" [formGroup]="signupForm" (ngSubmit)="onSignup()">
         <!-- Full Name Input -->
         <div class="form-group">
-          <input type="text" class="form-input" placeholder="Full Name" [(ngModel)]="fullName">
+          <input 
+            type="text" 
+            class="form-input" 
+            placeholder="Full Name"
+            formControlName="fullName">
+          <div class="validation-error" *ngIf="f['fullName'].invalid && (f['fullName'].dirty || f['fullName'].touched)">
+            <span *ngIf="f['fullName'].hasError('required')">Full name is required</span>
+            <span *ngIf="f['fullName'].hasError('minlength')">Full name must be at least 3 characters</span>
+          </div>
         </div>
 
         <!-- Role Selection Segment -->
         <div class="role-segment-wrapper">
-          <ion-segment [(ngModel)]="selectedRole" (ionChange)="onRoleChange($event)" class="role-segment">
+          <ion-segment formControlName="selectedRole" (ionChange)="onRoleChange($event)" class="role-segment">
             <ion-segment-button value="customer" class="role-button">
               <ion-label>I'M A CUSTOMER</ion-label>
             </ion-segment-button>
@@ -33,27 +41,64 @@
 
         <!-- Email/Phone Input -->
         <div class="form-group">
-          <input type="text" class="form-input" placeholder="Enter Email ID/ Phone No." [(ngModel)]="emailPhone">
+          <input 
+            type="text" 
+            class="form-input" 
+            placeholder="Enter Email ID/ Phone No."
+            formControlName="emailPhone">
+          <div class="validation-error" *ngIf="f['emailPhone'].invalid && (f['emailPhone'].dirty || f['emailPhone'].touched)">
+            <span *ngIf="f['emailPhone'].hasError('required')">Email is required</span>
+            <span *ngIf="f['emailPhone'].hasError('email')">Please enter a valid email address</span>
+          </div>
         </div>
 
         <!-- Password Input -->
         <div class="form-group">
-          <input type="password" class="form-input" placeholder="Password" [(ngModel)]="password">
+          <input 
+            type="password" 
+            class="form-input" 
+            placeholder="Password"
+            formControlName="password">
+          <div class="validation-error" *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+            <span *ngIf="f['password'].hasError('required')">Password is required</span>
+            <span *ngIf="f['password'].hasError('minlength')">Password must be at least 8 characters</span>
+          </div>
         </div>
 
         <!-- Repeat Password Input -->
         <div class="form-group">
-          <input type="password" class="form-input" placeholder="Repeat the Password" [(ngModel)]="repeatPassword">
+          <input 
+            type="password" 
+            class="form-input" 
+            placeholder="Repeat the Password"
+            formControlName="repeatPassword">
+          <div class="validation-error" *ngIf="f['repeatPassword'].invalid && (f['repeatPassword'].dirty || f['repeatPassword'].touched)">
+            <span *ngIf="f['repeatPassword'].hasError('required')">Please confirm your password</span>
+          </div>
+          <div class="validation-error" *ngIf="signupForm.hasError('passwordsMismatch') && (f['repeatPassword'].dirty || f['repeatPassword'].touched)">
+            <span>Passwords do not match</span>
+          </div>
         </div>
 
         <!-- Terms Checkbox -->
         <div class="terms-group">
-          <input type="checkbox" id="terms" [(ngModel)]="agreeTerms" class="terms-checkbox">
+          <input 
+            type="checkbox" 
+            id="terms" 
+            formControlName="agreeTerms"
+            class="terms-checkbox">
           <label for="terms" class="terms-label">I Agree with Terms of Service and Privacy Policy</label>
+          <div class="validation-error" *ngIf="f['agreeTerms'].invalid && (f['agreeTerms'].dirty || f['agreeTerms'].touched)">
+            <span *ngIf="f['agreeTerms'].hasError('required')">You must agree to the terms</span>
+          </div>
         </div>
 
         <!-- Sign Up Button -->
-        <ion-button expand="block" class="signup-button" (click)="onSignup()">
+        <ion-button 
+          expand="block" 
+          class="signup-button" 
+          type="submit"
+          [disabled]="signupForm.invalid">
           Sign up
         </ion-button>
 
@@ -64,7 +109,7 @@
             Log in
           </ion-button>
         </p>
-      </div>
+      </form>
     </div>
   </div>
 </ion-content>

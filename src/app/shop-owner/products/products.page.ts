@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { EditProductModalComponent } from './edit-product-modal.component';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.page.html',
   styleUrls: ['./products.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, EditProductModalComponent]
 })
 export class ProductsPage implements OnInit {
   searchTerm: string = '';
@@ -206,7 +207,7 @@ export class ProductsPage implements OnInit {
 
   showSearch: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private modalController: ModalController) { }
 
   ngOnInit() {
   }
@@ -216,8 +217,24 @@ export class ProductsPage implements OnInit {
   }
 
   editProduct(productId: string): void {
-    console.log('Editing product:', productId);
-    this.router.navigate(['/shop-owner/edit-product', productId]);
+    const product = this.myProducts.find(p => p.id === productId);
+    if (product) {
+      this.openEditModal(product);
+    }
+  }
+
+  async openEditModal(product: any): Promise<void> {
+    const modal = await this.modalController.create({
+      component: EditProductModalComponent,
+      componentProps: {
+        product: { ...product },
+        categories: this.categories
+      },
+      cssClass: 'edit-product-modal',
+      backdropDismiss: true
+    });
+
+    await modal.present();
   }
 
   hideProduct(productId: string): void {
