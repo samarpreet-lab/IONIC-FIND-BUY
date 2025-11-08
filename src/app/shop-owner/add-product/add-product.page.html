@@ -18,7 +18,7 @@
   <!-- Scrollable Content -->
   <div class="content-wrapper">
     <!-- Basics Section -->
-    <form class="form-section" [formGroup]="productForm">
+    <div class="form-section">
       <h2 class="section-title">Basics</h2>
       
       <div class="form-group">
@@ -26,10 +26,7 @@
           <ion-icon name="pricetag-outline"></ion-icon>
           Product name
         </label>
-        <input type="text" class="form-input" placeholder="Enter product name" formControlName="name">
-        <div class="validation-error" *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)">
-          <span *ngIf="f['name'].hasError('required')">Product name is required</span>
-        </div>
+        <input type="text" class="form-input" placeholder="Enter product name" [(ngModel)]="product.name">
       </div>
 
       <div class="form-group">
@@ -37,7 +34,7 @@
           <ion-icon name="document-text-outline"></ion-icon>
           Short description
         </label>
-        <textarea class="form-textarea" placeholder="Brief description" formControlName="description"></textarea>
+        <textarea class="form-textarea" placeholder="Brief description" [(ngModel)]="product.description"></textarea>
       </div>
 
       <div class="form-row">
@@ -46,7 +43,7 @@
             <ion-icon name="layers-outline"></ion-icon>
             Category
           </label>
-          <select class="form-select" [(ngModel)]="category">
+          <select class="form-select" [(ngModel)]="product.category">
             <option>Select category</option>
             <option>Bakery</option>
             <option>Beverages</option>
@@ -58,12 +55,12 @@
             <ion-icon name="bookmark-outline"></ion-icon>
             Subcategory
           </label>
-          <select class="form-select" [(ngModel)]="subcategory">
+          <select class="form-select" [(ngModel)]="product.subcategory">
             <option>Select subcategory</option>
           </select>
         </div>
       </div>
-    </form>
+    </div>
 
     <!-- Media Section -->
     <div class="form-section">
@@ -105,14 +102,14 @@
             <ion-icon name="hash"></ion-icon>
             SKU (optional)
           </label>
-          <input type="text" class="form-input" placeholder="Enter SKU" [(ngModel)]="sku">
+          <input type="text" class="form-input" placeholder="Enter SKU" [(ngModel)]="product.sku">
         </div>
         <div class="form-group">
           <label class="form-label">
             <ion-icon name="checkmark-circle-outline"></ion-icon>
             Availability
           </label>
-          <select class="form-select" [(ngModel)]="availability">
+          <select class="form-select" [(ngModel)]="product.availability">
             <option>In Stock</option>
             <option>Out of Stock</option>
           </select>
@@ -125,18 +122,14 @@
             <ion-icon name="cash-outline"></ion-icon>
             Price (display only)
           </label>
-          <input type="number" class="form-input" placeholder="Enter price" formControlName="price">
-          <div class="validation-error" *ngIf="f['price'].invalid && (f['price'].dirty || f['price'].touched)">
-            <span *ngIf="f['price'].hasError('required')">Price is required</span>
-            <span *ngIf="f['price'].hasError('min')">Price cannot be negative</span>
-          </div>
+          <input type="number" class="form-input" placeholder="Enter price" [(ngModel)]="product.price">
         </div>
         <div class="form-group">
           <label class="form-label">
             <ion-icon name="cube-outline"></ion-icon>
             In-store quantity
           </label>
-          <input type="number" class="form-input" placeholder="Enter quantity" [(ngModel)]="quantity">
+          <input type="number" class="form-input" placeholder="Enter quantity" [(ngModel)]="product.quantity">
         </div>
       </div>
 
@@ -148,7 +141,7 @@
       <h2 class="section-title">Visibility</h2>
       
       <div class="checkbox-group">
-        <input type="checkbox" id="shop-location" [(ngModel)]="showAtLocation" class="checkbox-input">
+        <input type="checkbox" id="shop-location" [(ngModel)]="product.showAtLocation" class="checkbox-input">
         <label for="shop-location" class="checkbox-label">
           <ion-icon name="location-outline"></ion-icon>
           Show at this shop location
@@ -156,7 +149,7 @@
       </div>
 
       <div class="checkbox-group">
-        <input type="checkbox" id="public-listing" [(ngModel)]="publicListing" class="checkbox-input">
+        <input type="checkbox" id="public-listing" [(ngModel)]="product.publicListing" class="checkbox-input">
         <label for="public-listing" class="checkbox-label">
           <ion-icon name="eye-outline"></ion-icon>
           Public listing
@@ -181,11 +174,11 @@
 
     <!-- Bottom Actions -->
     <div class="bottom-actions">
-      <ion-button fill="outline" class="save-draft-btn" (click)="saveDraft()">
+      <ion-button fill="outline" class="save-draft-btn">
         <ion-icon slot="start" name="document-outline"></ion-icon>
         Save draft
       </ion-button>
-      <ion-button fill="solid" class="publish-btn" (click)="publishProduct()" [disabled]="productForm.invalid">
+      <ion-button fill="solid" class="publish-btn" (click)="publishProduct()">
         <ion-icon slot="start" name="checkmark"></ion-icon>
         Publish
       </ion-button>

@@ -1,49 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.page.html',
   styleUrls: ['./add-product.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, ReactiveFormsModule, RouterLink]
+  imports: [IonicModule, CommonModule, FormsModule, RouterLink]
 })
 export class AddProductPage implements OnInit {
-  public productForm!: FormGroup;
+  public product = {
+    name: '',
+    description: '',
+    category: '',
+    subcategory: '',
+    sku: '',
+    availability: 'In Stock',
+    price: null,
+    quantity: null,
+    showAtLocation: false,
+    publicListing: false,
+    images: [] as string[]
+  };
+
   public uploadedImages: any[] = [];
-  public category: string = '';
-  public subcategory: string = '';
-  public sku: string = '';
-  public availability: string = 'In Stock';
-  public quantity: number | null = null;
-  public showAtLocation: boolean = false;
-  public publicListing: boolean = false;
-  public images: string[] = [];
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private productService: ProductService,
-    private router: Router
-  ) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.productForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(0)]],
-      description: ['']
-    });
-  }
-
-  /**
-   * Helper getter to access form controls
-   */
-  get f(): { [key: string]: AbstractControl } {
-    return this.productForm.controls;
+  ngOnInit() {
   }
 
   // Open camera to take a photo
@@ -62,7 +50,7 @@ export class AddProductPage implements OnInit {
           src: image.dataUrl,
           timestamp: new Date()
         });
-        this.images.push(image.dataUrl);
+        this.product.images.push(image.dataUrl);
         console.log('Photo captured:', image);
       }
     } catch (error) {
@@ -86,7 +74,7 @@ export class AddProductPage implements OnInit {
           src: image.dataUrl,
           timestamp: new Date()
         });
-        this.images.push(image.dataUrl);
+        this.product.images.push(image.dataUrl);
         console.log('Photo selected:', image);
       }
     } catch (error) {
@@ -97,40 +85,17 @@ export class AddProductPage implements OnInit {
   // Remove an image from the list
   public removeImage(imageId: number): void {
     this.uploadedImages = this.uploadedImages.filter(img => img.id !== imageId);
-    this.images = this.uploadedImages.map(img => img.src);
+    this.product.images = this.uploadedImages.map(img => img.src);
     console.log('Image removed');
   }
 
-  /**
-   * Add the product using the ProductService
-   */
-  public onAddProduct(): void {
-    if (this.productForm.invalid) {
-      Object.keys(this.productForm.controls).forEach(key => {
-        this.productForm.get(key)?.markAsTouched();
-      });
-      console.log('Form is invalid');
-      return;
-    }
-
-    const formValue = this.productForm.value;
-    const newProduct = this.productService.addProduct({
-      name: formValue.name,
-      price: formValue.price,
-      description: formValue.description,
-      imageUrl: this.uploadedImages.length > 0 ? this.uploadedImages[0].src : ''
-    });
-
-    console.log('Product added:', newProduct);
-    this.router.navigate(['/shop-owner/products']);
-  }
-
   public publishProduct(): void {
-    this.onAddProduct();
+    console.log('Publishing product:', this.product);
+    // Add your product publish logic here
   }
 
   public saveDraft(): void {
-    console.log('Saving product as draft');
+    console.log('Saving product as draft:', this.product);
     // Add your draft save logic here
   }
 }

@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { EditProductModalComponent } from './edit-product-modal.component';
-import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -208,20 +207,9 @@ export class ProductsPage implements OnInit {
 
   showSearch: boolean = false;
 
-  constructor(
-    private router: Router,
-    private modalController: ModalController,
-    private productService: ProductService
-  ) { }
+  constructor(private router: Router, private modalController: ModalController) { }
 
   ngOnInit() {
-  }
-
-  /**
-   * Lifecycle hook to refresh product list when view is about to enter
-   */
-  ionViewWillEnter(): void {
-    this.myProducts = this.productService.getProducts() as any[];
   }
 
   addProduct(): void {
@@ -259,16 +247,6 @@ export class ProductsPage implements OnInit {
 
   toggleStock(product: any): void {
     console.log('Toggling stock for:', product.name);
-  }
-
-  /**
-   * Delete a product using the ProductService and refresh the list
-   */
-  deleteProduct(id: string): void {
-    this.productService.deleteProduct(id);
-    // Refresh the local list
-    this.myProducts = this.productService.getProducts() as any[];
-    console.log('Product deleted:', id);
   }
 
   onSearchClicked(): void {
