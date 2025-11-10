@@ -36,26 +36,26 @@ export class AddProductPage implements OnInit {
 
   // Open camera to take a photo
   public async takePhoto(): Promise<void> {
-    try {
-      const image = await Camera.getPhoto({
-        quality: 90,
-        allowEditing: true,
-        resultType: CameraResultType.DataUrl,
-        source: CameraSource.Camera
-      });
+    // try {
+    //   const image = await Camera.getPhoto({
+    //     quality: 90,
+    //     allowEditing: true,
+    //     resultType: CameraResultType.DataUrl,
+    //     source: CameraSource.Camera
+    //   });
 
-      if (image.dataUrl) {
-        this.uploadedImages.push({
-          id: Date.now(),
-          src: image.dataUrl,
-          timestamp: new Date()
-        });
-        this.product.images.push(image.dataUrl);
-        console.log('Photo captured:', image);
-      }
-    } catch (error) {
-      console.error('Error taking photo:', error);
-    }
+    //   if (image.dataUrl) {
+    //     this.uploadedImages.push({
+    //       id: Date.now(),
+    //       src: image.dataUrl,
+    //       timestamp: new Date()
+    //     });
+    //     this.product.images.push(image.dataUrl);
+    //     console.log('Photo captured:', image);
+    //   }
+    // } catch (error) {
+    //   console.error('Error taking photo:', error);
+    // }
   }
 
   // Open gallery to select a photo
@@ -90,11 +90,13 @@ export class AddProductPage implements OnInit {
   }
 
   public publishProduct(): void {
+    alert('Product published successfully!');
     console.log('Publishing product:', this.product);
     // Add your product publish logic here
   }
 
   public saveDraft(): void {
+    alert('Product saved as draft!');
     console.log('Saving product as draft:', this.product);
     // Add your draft save logic here
   }
